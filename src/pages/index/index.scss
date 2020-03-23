@@ -1,0 +1,51 @@
+.indexBox{
+  width: 100%;
+  height: 320px;
+  // background-color: #69c0ff;
+  & .title{
+    height: 320px;
+    display: block;
+    font-size: 78px;
+    font-family: "楷体";
+    font-weight: bold;
+    padding-top: 112px;
+    padding-left: 12px;
+    color: #fff;
+    text-align: left;
+  }
+  & .background{
+    display: block;
+    width: 100%;
+    height: 320px;
+    position:fixed;
+    background-size:100% 100%;
+    z-index: -1;
+  }
+   & .cap{
+     display: block;
+     padding-top: 98px;
+     text-align: right;
+   }
+}
+.panel-title {
+  position: relative;
+  margin-bottom: 1.06667rem;
+  padding-left: 1.06667rem;
+  color: #6a6a77;
+  font-size: .68267rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.panel-title::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: .512rem;
+  top: 50%;
+  margin-top: -.42667rem;
+  width: 2px;
+  height: .85333rem;
+  background-color: #6190e8;
+  box-shadow: 0 0.14933rem 0.256rem 0 rgba(97,144,232,.2);
+  border-radius: 1px;
+}
