@@ -5,12 +5,12 @@
   & .title{
     height: 320px;
     display: block;
-    font-size: 78px;
+    font-size: 60px;
     font-family: "楷体";
     font-weight: bold;
-    padding-top: 112px;
+    padding-top: 144px;
     padding-left: 12px;
-    color: #fff;
+    color: #000;
     text-align: left;
   }
   & .background{
@@ -23,7 +23,8 @@
   }
    & .cap{
      display: block;
-     padding-top: 98px;
+     padding-top: 138px;
+     margin-left: 6px;
      text-align: right;
    }
 }

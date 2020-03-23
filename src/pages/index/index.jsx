@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import { AtIcon, AtGrid } from 'taro-ui'
 import './index.scss'
 import background from '../../assets/images/bnner.jpg'
+import bg from '../../assets/images/bg.jpg'
 
 export default class Index extends Component {
 
@@ -61,12 +62,12 @@ export default class Index extends Component {
 
     return (
       <View className='indexBox'>
-        <Image className='background' src={background} />
+        <Image className='background' src={bg} />
         <View className='at-row'>
-          <View className='at-col at-col-4'>
-            <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='60' color='#fff'/>
+          <View className='at-col at-col-5'>
+            <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>
           </View>
-          <View className='at-col at-col-8'>
+          <View className='at-col at-col-7'>
             <Text className='title'>某某、标题</Text>
           </View>
         </View>
