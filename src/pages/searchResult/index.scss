@@ -1,0 +1,18 @@
+.search-result-box {
+  width: 100%;
+
+  & .top-tool{
+    //height: 200px;
+    //background-color: #5199ff;
+  }
+
+  & .at-search-bar{
+    background-color: #5199ff;
+    & .at-search-bar__action{
+      background-color: #fff;
+      color: #434343;
+      font-size: 30px;
+    }
+  }
+}
+

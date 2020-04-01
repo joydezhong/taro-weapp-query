@@ -26,6 +26,7 @@ class App extends Component {
       'pages/index/index',
       'pages/searchCharacter/index',
       'pages/searchIdiom/index',
+      'pages/searchResult/index',
       'pages/test/index'
     ],
     window: {
