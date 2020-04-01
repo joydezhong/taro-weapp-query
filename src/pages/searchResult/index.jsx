@@ -13,7 +13,6 @@ export default class Index extends Component {
     this.state = {
       value: '',
       actionName: '搜索',
-
     }
   }
 

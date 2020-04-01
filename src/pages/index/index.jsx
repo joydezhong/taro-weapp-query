@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import { AtIcon, AtGrid } from 'taro-ui'
 import './index.scss'
 import background from '../../assets/images/bnner.jpg'
-import bg from '../../assets/images/bg.jpg'
+// import bg from '../../assets/images/bg.jpg'
 
 export default class Index extends Component {
 
@@ -36,11 +36,11 @@ export default class Index extends Component {
 
   render () {
     const gridData = [{
-        image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+        image: 'https://s1.ax1x.com/2020/04/01/G8SEnA.png',
         value: '领取中心'
       },
       {
-        image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+        image: 'https://s1.ax1x.com/2020/04/01/G8SV0I.png',
         value: '找折扣'
       },
       {
@@ -59,6 +59,8 @@ export default class Index extends Component {
         image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
         value: '手机馆'
       }]
+
+    const bg = 'https://s1.ax1x.com/2020/04/01/G3qmDK.jpg'
 
     return (
       <View className='indexBox'>

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Input, Icon, Image } from '@tarojs/components'
 import './index.scss'
-import bg from '../../assets/images/bnner.jpg'
+// import bg from '../../assets/images/bnner.jpg'
 
 export default class Index extends Component {
   config = {
@@ -40,6 +40,9 @@ export default class Index extends Component {
   }
 
   render () {
+
+    const bg = 'https://s1.ax1x.com/2020/04/01/G3qnHO.jpg'
+
     return (
       <View className='search-character-box'>
         <Image className='background' src={bg} />
