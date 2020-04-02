@@ -3,7 +3,6 @@ import Index from './pages/index'
 
 import './app.scss'
 import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
-import './assets/css/font-awesome.css'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -26,8 +25,9 @@ class App extends Component {
       'pages/index/index',
       'pages/searchCharacter/index',
       'pages/searchIdiom/index',
+      'pages/searchTextLists/index',
       'pages/searchResult/index',
-      'pages/test/index'
+      'pages/searchIndex/index'
     ],
     window: {
       backgroundTextStyle: 'light',

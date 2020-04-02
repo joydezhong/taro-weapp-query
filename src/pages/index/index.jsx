@@ -2,8 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtIcon, AtGrid } from 'taro-ui'
 import './index.scss'
-import background from '../../assets/images/bnner.jpg'
-// import bg from '../../assets/images/bg.jpg'
 
 export default class Index extends Component {
 
@@ -60,7 +58,7 @@ export default class Index extends Component {
         value: '手机馆'
       }]
 
-    const bg = 'https://s1.ax1x.com/2020/04/01/G3qmDK.jpg'
+    const bg = 'https://s1.ax1x.com/2020/04/02/GYYRaQ.jpg'
 
     return (
       <View className='indexBox'>
@@ -70,11 +68,11 @@ export default class Index extends Component {
             <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>
           </View>
           <View className='at-col at-col-7'>
-            <Text className='title'>某某、标题</Text>
+            <Text className='title'></Text>
           </View>
         </View>
         <View className='chooseBox'>
-          <Text className='panel-title'>选择应用</Text>
+          <Text className='panel-title'>选择菜单</Text>
           <AtGrid data={gridData} onClick={this.handleClick} />
         </View>
       </View>

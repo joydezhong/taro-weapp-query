@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
+
 import { View, Text, Input, Icon, Image } from '@tarojs/components'
 import './index.scss'
-// import bg from '../../assets/images/bnner.jpg'
 
 export default class Index extends Component {
   config = {
@@ -26,6 +26,8 @@ export default class Index extends Component {
   componentDidHide () { }
 
   handleChange (value) {
+    // 在改变后启动查询,跳转至结果页
+    console.log(value.target.value,'在改变后启动查询,跳转至结果页')
     this.setState({
       value: value.target.value
     })
@@ -33,14 +35,18 @@ export default class Index extends Component {
   }
 
   handleSearchItem(value){
-    console.log(value)
-    Taro.navigateTo({
-      url: `/pages/searchResult/index?option=${value}`
-    })
+    // 拼音部首跳转至索引页 汉字跳转结果页
+    if(value === 'hanzi')
+      Taro.navigateTo({
+        url: `/pages/searchResult/index?option=${value}`
+      })
+    else
+      Taro.navigateTo({
+        url: `/pages/searchIndex/index?option=${value}`
+      })
   }
 
   render () {
-
     const bg = 'https://s1.ax1x.com/2020/04/01/G3qnHO.jpg'
 
     return (
