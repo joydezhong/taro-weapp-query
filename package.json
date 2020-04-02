@@ -2,7 +2,7 @@
   "name": "myMiniApp",
   "version": "1.0.0",
   "private": true,
-  "description": "myMiniApp",
+  "description": "学生的得力助手，辞典大全",
   "templateInfo": {
     "name": "default",
     "typescript": false,

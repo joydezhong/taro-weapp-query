@@ -20,12 +20,12 @@ export default class Index extends Component {
   }
   handleClick = (item, index) => {
     console.log(item, index)
-    if(item.value === '领取中心'){
+    if(item.value === '新华字典'){
       Taro.navigateTo({
         url: '/pages/searchCharacter/index'
       })
 
-    }else if(item.value === '找折扣'){
+    }else if(item.value === '成语词典'){
       Taro.navigateTo({
         url: '/pages/searchIdiom/index'
       })
@@ -34,31 +34,31 @@ export default class Index extends Component {
 
   render () {
     const gridData = [{
-        image: 'https://s1.ax1x.com/2020/04/01/G8SEnA.png',
-        value: '领取中心'
+        image: 'https://s1.ax1x.com/2020/04/02/GY2mSf.png',
+        value: '新华字典'
       },
       {
-        image: 'https://s1.ax1x.com/2020/04/01/G8SV0I.png',
-        value: '找折扣'
+        image: 'https://s1.ax1x.com/2020/04/02/GY2lwj.png',
+        value: '成语词典'
       },
       {
-        image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-        value: '领会员'
+        image: 'https://s1.ax1x.com/2020/04/02/GY2KOg.png',
+        value: '近反义词'
       },
       {
         image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
         value: '新品首发'
       },
       {
-        image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-        value: '领京豆'
+        image: 'https://s1.ax1x.com/2020/04/02/GY2ZfP.png',
+        value: '古诗词典'
       },
       {
-        image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-        value: '手机馆'
+        image: 'https://s1.ax1x.com/2020/04/02/GY2nl8.png',
+        value: '帮助中心'
       }]
 
-    const bg = 'https://s1.ax1x.com/2020/04/02/GYYRaQ.jpg'
+    const bg = 'https://s1.ax1x.com/2020/04/02/GtkAMt.jpg'
 
     return (
       <View className='indexBox'>
