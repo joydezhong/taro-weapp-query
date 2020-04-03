@@ -35,19 +35,16 @@ export default class Index extends Component {
   }
 
   componentDidMount () {
-    let url  = zidian_api;
-    if(this.state.routerParam === 'pinyin')
-      url += '/xhzd/pinyin'
-    else if(this.state.routerParam === 'bushou')
-      url += '/xhzd/bushou'
-    console.log(url)
-    Taro.request({
-      url: url,
-      data: { key: zidian_mine }
-    }).then((res)=>{
-      this.formatting(res.data.result) //格式化
-    }).catch((error)=>{
-      console.log(error,'error')
+    const { routerParam } = this.state
+    Taro.getStorage({
+      key: routerParam,
+      success: (res)=>{
+        console.log('有缓存')
+        this.formatting(res.data)
+      },
+      fail: (res)=>{
+        this.loadServerData()
+      }
     })
   }
 
@@ -56,6 +53,28 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  loadServerData(){
+    const { routerParam } = this.state
+    let url  = zidian_api;
+    if(routerParam === 'pinyin')
+      url += '/xhzd/pinyin'
+    else if(routerParam === 'bushou')
+      url += '/xhzd/bushou'
+
+    Taro.request({
+      url: url,
+      data: { key: zidian_mine }
+    }).then((res)=>{
+      this.formatting(res.data.result)  //格式化
+      Taro.setStorage({                 //缓存拼音部首数据
+        key: routerParam,
+        data: res.data.result
+      })
+    }).catch((error)=>{
+      console.log(error,'error')
+    })
+  }
 
   onClick (item) {
     const { routerParam } = this.state

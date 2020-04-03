@@ -5,7 +5,7 @@ import './index.scss'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '字符'
+    navigationBarTitleText: '新华字典'
   }
 
   constructor () {

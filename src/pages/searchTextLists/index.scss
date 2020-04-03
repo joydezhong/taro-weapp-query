@@ -23,11 +23,21 @@
       border-radius: 1px;
     }
   }
-  & .panel__content{
-    padding: 0 .42667rem;
-  }
   & .page{
     margin-top: 50px;
+  }
+  & .word-block{
+    text-align: center;
+    font-size: 48px;
+    & .word-block-insert{
+      box-shadow: 3px 3px 10px #ccc;
+      padding: 10px 0;
+      margin: 10px;
+      & .word-block-pinyin{
+        font-size: 24px;
+        color: #8d8d8d;
+      }
+    }
   }
 }
 
