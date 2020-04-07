@@ -1,9 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
-
 import { Provider } from '@tarojs/redux'
-
 import configStore from './store'
+import rootReducer from './store/reducers'
 
 import './app.scss'
 import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
@@ -14,7 +13,7 @@ import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 //   require('nerv-devtools')
 // }
 
-const store = configStore()
+const store = configStore(rootReducer)
 
 class App extends Component {
 

@@ -1,22 +1,16 @@
-import { UPDATE } from '../constants/index'
+import * as types from '../constants/index';
 
-const INITIAL_STATE = {
-  current: 1
+let init = {
+  // 此处定义 store里面某个模块的初始state
+  current: 1,
+  dataArray: []
 }
 
-
-export default function dictionary (state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case UPDATE:
-      return {
-        ...state,
-        current: state.current
-      }
-    // case MINUS:
-    //   return {
-    //     ...state,
-    //     num: state.num - 1
-    //   }
+export function textLists(state = init, action){
+  console.log(state,'reduce state')
+  switch(action.type) {
+    case types.UPDATE_TEXT_LISTS:
+      return state
     default:
       return state
   }

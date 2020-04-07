@@ -1,19 +1,21 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtPagination  } from 'taro-ui'
-import { connect } from '@tarojs/redux'
+import { connect, useDispatch  } from '@tarojs/redux'
+import { updateTextLists } from '../../store/actions'
 import './index.scss'
 import {zidian_api, zidian_mine} from "../../../config/api"
 
-import { update } from '../../store/actions/index'
-// import dictionary from "../../store/reducers/dictionary"
-import { dictionary } from "../../store/reducers/dictionary"
 
-@connect(({ dictionary }) => ({
-  dictionary
-}))
+@connect(
+  state => ({
+    current: state.current,
+    dataArray: state.dataArray
+  }),
+)
 
 export default class Index extends Component {
+
   config = {
     navigationBarTitleText: '选择文字'
   }
@@ -21,12 +23,12 @@ export default class Index extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // current: 1,
+      // current: 1, // 换为props
       pageSize: 50,
       pageTotal: null, //总条数
       routerOption: null,
       routerName: null,
-      dataArray: []
+      // dataArray: [] // 换为props
     }
   }
 
@@ -39,6 +41,7 @@ export default class Index extends Component {
 
   componentDidMount () {
     this.getData()
+    console.log(this.props,'props')
   }
 
   componentWillUnmount () { }
@@ -84,6 +87,7 @@ export default class Index extends Component {
   }
 
   processData(data){
+    const dispatch = useDispatch()
     const { current } = this.props
     const { routerName } = this.state
     let dataArray = data.list || []
@@ -92,6 +96,7 @@ export default class Index extends Component {
       current: data.page,
       pageTotal: data.totalcount,
     })
+    dispatch(updateTextLists)
     Taro.setStorage({
       key: `${routerName}+${current}`,  // 以 拼音或部首+页码为key缓存
       data: dataArray

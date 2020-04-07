@@ -1,9 +1,8 @@
-import {
-  UPDATE
-} from '../constants/index'
+import * as types from '../constants/index'
 
-export const update = () => {
+export function updateTextLists(data) {
   return {
-    type: UPDATE
+    type: types.UPDATE_TEXT_LISTS,
+    payload: data
   }
 }

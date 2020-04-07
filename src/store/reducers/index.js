@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
-import dictionary from './dictionary'
+import { textLists } from './dictionary'
 
-export default combineReducers({
-  dictionary
+const rootReducer = combineReducers({
+  /* your reducers */
+  textLists
 })
+export default rootReducer
+
