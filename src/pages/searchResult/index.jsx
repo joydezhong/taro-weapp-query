@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Icon, Image } from '@tarojs/components'
-import { AtAccordion  } from 'taro-ui'
+import { View } from '@tarojs/components'
+import { AtSearchBar  } from 'taro-ui'
 import './index.scss'
 
 export default class Index extends Component {
@@ -22,13 +22,13 @@ export default class Index extends Component {
     //获取路由参数
     let params = this.$router.params.option
     let name = this.$router.params.name
-    if(params === 'pinyin')
-      this.setState({ actionName: '拼音搜索' })
-    else if(params === 'bushou')
-      this.setState({ actionName: '部首搜索' })
-    else if(params === 'hanzi')
-      this.setState({ actionName: '汉字搜索' })
-    this.setState({ routerOption: params, routerName: name })
+    // if(params === 'pinyin')
+    //   this.setState({ actionName: '拼音搜索' })
+    // else if(params === 'bushou')
+    //   this.setState({ actionName: '部首搜索' })
+    // else if(params === 'hanzi')
+    //   this.setState({ actionName: '汉字搜索' })
+    this.setState({ routerOption: params, routerName: name, actionName: '搜索' })
   }
 
   componentDidMount () {

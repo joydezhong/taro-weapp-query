@@ -1,18 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtPagination  } from 'taro-ui'
-import { connect, useDispatch  } from '@tarojs/redux'
+import { connect  } from '@tarojs/redux'
 import { updateTextLists } from '../../store/actions'
 import './index.scss'
 import {zidian_api, zidian_mine} from "../../../config/api"
 
-
-@connect(
-  state => ({
-    current: state.current,
-    dataArray: state.dataArray
-  }),
-)
 
 export default class Index extends Component {
 
@@ -23,12 +16,12 @@ export default class Index extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // current: 1, // 换为props
+      current: 1, // 换为props
       pageSize: 50,
       pageTotal: null, //总条数
       routerOption: null,
       routerName: null,
-      // dataArray: [] // 换为props
+      dataArray: [] // 换为props
     }
   }
 
@@ -41,7 +34,6 @@ export default class Index extends Component {
 
   componentDidMount () {
     this.getData()
-    console.log(this.props,'props')
   }
 
   componentWillUnmount () { }
@@ -51,8 +43,7 @@ export default class Index extends Component {
   componentDidHide () { }
 
   getData(){
-    const { current } = this.props
-    const { routerName } = this.state  //下次再获取数据 先从缓存中取 此时pageTotal是默认的null
+    const { routerName, current } = this.state  //下次再获取数据 先从缓存中取 此时pageTotal是默认的null
     Taro.getStorage({
       key: `${routerName}+${current}`,
       success: (res)=>{
@@ -68,8 +59,8 @@ export default class Index extends Component {
   }
 
   loadServerData(){
-    const { current } = this.props
-    const { routerOption, routerName, pageSize } = this.state
+    // const { current } = this.props
+    const { routerOption, routerName, pageSize, current } = this.state
     let url  = zidian_api
     if(routerOption === 'pinyin')
       url += '/xhzd/querypy'
@@ -87,7 +78,6 @@ export default class Index extends Component {
   }
 
   processData(data){
-    const dispatch = useDispatch()
     const { current } = this.props
     const { routerName } = this.state
     let dataArray = data.list || []
@@ -96,7 +86,7 @@ export default class Index extends Component {
       current: data.page,
       pageTotal: data.totalcount,
     })
-    dispatch(updateTextLists)
+    // this.props.updateTextLists({current:data.page,dataArray: dataArray,pageTotal: data.totalcount})
     Taro.setStorage({
       key: `${routerName}+${current}`,  // 以 拼音或部首+页码为key缓存
       data: dataArray
@@ -105,6 +95,8 @@ export default class Index extends Component {
 
   handlePage (value) {
     console.log('翻页',value)
+    // this.props.updateTextLists({current: value})
+    // this.getData()
     this.setState({
       current: value.current
     },()=>{
@@ -113,8 +105,8 @@ export default class Index extends Component {
   }
 
   render () {
-    const { current } = this.props
-    const { pageSize, pageTotal, dataArray, routerName } = this.state
+    // const { current, pageTotal } = this.props
+    const { pageSize, dataArray, routerName,  current, pageTotal } = this.state
     return (
       <View className='search-lists-box'>
         <Text className='panel__title'>选择文字 {routerName}</Text>
@@ -144,3 +136,13 @@ export default class Index extends Component {
     )
   }
 }
+
+// export default connect (({ textLists }) => ({
+//   current: textLists.current,
+//   pageTotal: textLists.pageTotal,
+//   dataArray: textLists.dataArray
+// }), (dispatch) => ({
+//   updateTextLists (data) {
+//     dispatch(updateTextLists(data))
+//   }
+// }))(Index)

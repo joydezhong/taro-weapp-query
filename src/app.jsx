@@ -13,7 +13,7 @@ import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 //   require('nerv-devtools')
 // }
 
-const store = configStore(rootReducer)
+const store = configStore()
 
 class App extends Component {
 
@@ -29,10 +29,10 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/searchCharacter/index',
-      'pages/searchIdiom/index',
+      'pages/searchIndex/index',
       'pages/searchTextLists/index',
       'pages/searchResult/index',
-      'pages/searchIndex/index'
+      'pages/searchIdiom/index'
     ],
     window: {
       backgroundTextStyle: 'light',

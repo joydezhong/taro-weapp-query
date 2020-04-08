@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
 import { textLists } from './dictionary'
 
-const rootReducer = combineReducers({
-  /* your reducers */
+export default combineReducers({
   textLists
 })
-export default rootReducer
+
+// const rootReducer = combineReducers({
+//   /* your reducers */
+//   textLists
+// })
+// export default rootReducer
 

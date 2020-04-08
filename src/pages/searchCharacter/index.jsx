@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-
+import { AtMessage } from 'taro-ui'
 import { View, Text, Input, Icon, Image } from '@tarojs/components'
 import './index.scss'
 
@@ -31,7 +31,15 @@ export default class Index extends Component {
     this.setState({
       value: value.target.value
     })
-    return value
+    let reg = /^[\u4E00-\u9FA5]+$/
+    if(reg.test(value.target.value)){
+      Taro.navigateTo({
+        url: `/pages/searchResult/index?option=${value}&word=${value}`
+      })
+    }else{
+      Taro.atMessage({ type: 'error', message: '请正确输入汉字！' })
+    }
+    // return value
   }
 
   handleSearchItem(value){
@@ -51,6 +59,7 @@ export default class Index extends Component {
 
     return (
       <View className='search-character-box'>
+        <AtMessage />
         <Image className='background' src={bg} />
         <Text className='title'>Hello character!</Text>
         <Icon className='search-icon' size='18' type='search' />
@@ -60,7 +69,7 @@ export default class Index extends Component {
           type='text'
           placeholder='请输入您要查询的汉字...'
           value={this.state.value}
-          onChange={(e)=>{this.handleChange(e)}}
+          onChange={(e)=>this.handleChange(e)}
           className='search-input'
           placeholderClass='placeholder'
         />
