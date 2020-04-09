@@ -9,5 +9,37 @@
       font-size: 30px;
     }
   }
-}
 
+  & .base-details{
+    background-color: #5199ff;
+    & .detail-font{
+      background-color: #fff;
+      color: #000;
+      width: 80%;   /*利用padding的百分比作用*/
+      height: 0;   /*利用padding的百分比作用*/
+      padding-bottom: 80%;  /*利用padding的百分比作用*/
+      margin: 36px auto;
+      font-size: 100px;
+      font-weight: bolder;
+      text-align: center;
+      line-height: 2;
+    }
+    & .details-p-box{
+      margin-top: 32px;
+      margin-left: 30px;
+      & .detail-p{
+        font-size: 36px;
+        line-height: 2;
+        color: #000;
+        & .detail-p-title{
+          //margin-right: 28px;
+          color: #ffffb8;
+        }
+        & .detail-p-content{
+          margin-right: 30px;
+          color: #fadb14;
+        }
+      }
+    }
+  }
+}

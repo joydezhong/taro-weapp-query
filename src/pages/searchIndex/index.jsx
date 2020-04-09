@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View} from '@tarojs/components'
-import { AtIndexes  } from 'taro-ui'
+import {AtIndexes, AtMessage} from 'taro-ui'
 import './index.scss'
 import { zidian_api, zidian_mine } from '../../../config/api'
 
@@ -72,6 +72,7 @@ export default class Index extends Component {
         data: res.data.result
       })
     }).catch((error)=>{
+      Taro.atMessage({ type: 'error', message: error })
       console.log(error,'error')
     })
   }
@@ -106,6 +107,7 @@ export default class Index extends Component {
     const { allPinYin, titleText } = this.state
     return (
       <View className='search-index-box'>
+        <AtMessage />
         <AtIndexes
           list={allPinYin}
           topKey='↑'

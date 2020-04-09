@@ -78,8 +78,8 @@ export default class Index extends Component {
   }
 
   processData(data){
-    const { current } = this.props
-    const { routerName } = this.state
+    // const { current } = this.props
+    const { routerName, current } = this.state
     let dataArray = data.list || []
     this.setState({
       dataArray: dataArray,

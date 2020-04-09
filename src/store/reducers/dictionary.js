@@ -8,7 +8,7 @@ let init = {
 }
 
 export function textLists(state = init, action){
-  console.log(state,'reduce state', action.payload, 'reduce action.payload') //null //不要忘记action传入的数据在action.payload
+  // console.log(state,'reduce state', action.payload, 'reduce action.payload') //null //不要忘记action传入的数据在action.payload
   switch(action.type) {
     case types.UPDATE_TEXT_LISTS:
       return {

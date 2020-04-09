@@ -11,7 +11,8 @@ export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-      value: ''
+      value: '',
+      option: ''
     }
   }
 
@@ -34,7 +35,7 @@ export default class Index extends Component {
     let reg = /^[\u4E00-\u9FA5]+$/
     if(reg.test(value.target.value)){
       Taro.navigateTo({
-        url: `/pages/searchResult/index?option=${value}&word=${value}`
+        url: `/pages/searchResult/index?word=${value.target.value}` //直接enter只传入汉字
       })
     }else{
       Taro.atMessage({ type: 'error', message: '请正确输入汉字！' })
@@ -52,6 +53,7 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: `/pages/searchIndex/index?option=${value}`
       })
+    this.setState({option: value})
   }
 
   render () {
