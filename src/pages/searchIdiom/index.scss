@@ -1,0 +1,48 @@
+.search-idiom-box {
+  width: 100%;
+  //height: 320px;
+  position: relative;
+  & .background{
+    display: block;
+    width: 100%;
+    height: 320px;
+    position:fixed;
+    background-size:100% 100%;
+    z-index: -1;
+  }
+  & .title{
+    height: 320px;
+    display: block;
+    font-size: 60px;
+    font-family: "楷体";
+    font-weight: bold;
+    padding-top: 100px;
+    padding-left: 12px;
+    color: #000;
+    text-align: center;
+  }
+  & .search-input{
+    background-color: white;
+    border: 1px solid #F6F6F6;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 18px;
+    box-shadow: 0px 5px 5px #ccc;
+    height: 100px;
+    padding-left: 80px;
+    font-size: 34px;
+    position: absolute;
+    top: 264px;
+    left: 0;
+    right: 0;
+  }
+  & .search-icon{
+    position: absolute;
+    top: 295px;
+    left: 8%;
+    z-index: 1;
+  }
+}
+.placeholder{
+  color: #cacaca;
+}

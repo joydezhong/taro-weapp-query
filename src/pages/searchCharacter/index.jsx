@@ -57,13 +57,13 @@ export default class Index extends Component {
   }
 
   render () {
-    const bg = 'https://s1.ax1x.com/2020/04/01/G3qnHO.jpg'
+    const bg = 'https://s1.ax1x.com/2020/04/10/G7C3KU.jpg'
 
     return (
       <View className='search-character-box'>
         <AtMessage />
         <Image className='background' src={bg} />
-        <Text className='title'>Hello character!</Text>
+        <Text className='title'></Text>
         <Icon className='search-icon' size='18' type='search' />
         <Input
           name='value'
