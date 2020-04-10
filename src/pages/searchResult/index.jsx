@@ -16,7 +16,9 @@ export default class Index extends Component {
       actionName: '搜索',
       routerOption: null,
       details: {},
-      open: false
+      openJian: true,
+      openXiang: false,
+      isDisplayDetails: false
     }
   }
 
@@ -28,7 +30,8 @@ export default class Index extends Component {
     this.setState({
       routerOption: params,
       searchWord: word,
-      actionName: '搜索' })
+      actionName: '搜索'
+    })
   }
 
   componentDidMount () {
@@ -43,13 +46,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  onActionClick () {
+    const { searchWord } = this.state
+    this.getDetails(searchWord)
+  }
   onChange (value) {
     this.setState({
-      searchWord: value.target.value
+      searchWord: value
     })
-  }
-  onActionClick () {
-    console.log('开始搜索')
   }
   getDetails(word){
     let url  = zidian_api + '/xhzd/query'
@@ -57,8 +61,8 @@ export default class Index extends Component {
       url: url,
       data: { key: zidian_mine, word: word }
     }).then((res)=>{
-      if(res.statusCode === 200)
-        this.setState({ details: res.data.result })
+      if(res.statusCode === 200){
+        this.setState({ details: res.data.result, isDisplayDetails: true })}
       else
         Taro.atMessage({ type: 'error', message: res.errMsg })
     }).catch((error)=>{
@@ -66,27 +70,37 @@ export default class Index extends Component {
       console.log(error,'error')
     })
   }
-  handleClick (value) {
+  handleClickJian (value) {
     this.setState({
-      open: value
+      openJian: value
     })
+  }
+  handleClickXiang (value) {
+    this.setState({
+      openXiang: value
+    })
+  }
+  handleClear () {
+    this.setState({ searchWord: '' })
   }
 
   render () {
-    const { details } = this.state
+    const { details, searchWord, actionName, isDisplayDetails } = this.state
     return (
       <View className='search-result-box'>
         <AtMessage />
         <View className='top-tool'>
           <AtSearchBar
             showActionButton
-            value={this.state.searchWord}
-            actionName={this.state.actionName}
-            onChange={(e)=>{this.onChange(e)}}
-            onActionClick={(e)=>{this.onActionClick(e)}}
+            value={searchWord}
+            actionName={actionName}
+            onChange={this.onChange.bind(this)}
+            onActionClick={this.onActionClick.bind(this)}
+            onClear={this.handleClear.bind(this)}
           />
         </View>
-        <View className='details-box'>
+        {
+          isDisplayDetails && (<View className='details-box'>
           <View className='base-details at-row at-row__justify--center'>
             <View className='at-col at-col-4'>
               <View className='detail-font'>{details.zi}</View>
@@ -109,24 +123,39 @@ export default class Index extends Component {
             </View>
           </View>
           <AtAccordion
-            open={this.state.open}
-            onClick={this.handleClick.bind(this)}
+            open={this.state.openJian}
+            onClick={this.handleClickJian.bind(this)}
             title='简解'
             icon={{ value: 'tag' }}
           >
-            <AtList hasBorder={false}>
-              <AtListItem
-                title='标题文字'
-              />
-              <AtListItem
-                title='标题文字'
-                note='描述信息'
-              />
-              <AtListItem
-                title='标题文字'
-                note='描述信息'
-                extraText='详细信息'
-              />
+            <AtList hasBorder={false} className='jie-box'>
+              {
+                details.jijie.map((item, index)=>{
+                  return (
+                    <View className='list-text' key={index}>
+                      <Text>{index+1}. {item}</Text>
+                    </View>
+                  )
+                })
+              }
+            </AtList>
+          </AtAccordion>
+          <AtAccordion
+            open={this.state.openXiang}
+            onClick={this.handleClickXiang.bind(this)}
+            title='详解'
+            icon={{ value: 'tag' }}
+          >
+            <AtList hasBorder={false} className='jie-box'>
+              {
+                details.xiangjie.map((item, index)=>{
+                  return (
+                    <View className='list-text' key={index}>
+                      <Text>{index+1}. {item}</Text>
+                    </View>
+                  )
+                })
+              }
             </AtList>
           </AtAccordion>
           {/*<View className='simple-details'>*/}
@@ -135,7 +164,8 @@ export default class Index extends Component {
           {/*<View className='full-details'>*/}
 
           {/*</View>*/}
-        </View>
+        </View>)
+        }
       </View>
     )
   }

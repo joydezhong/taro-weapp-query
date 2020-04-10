@@ -104,6 +104,12 @@ export default class Index extends Component {
     })
   }
 
+  selectFont (value) {
+    Taro.navigateTo({
+      url: `/pages/searchResult/index?word=${value}`
+    })
+  }
+
   render () {
     // const { current, pageTotal } = this.props
     const { pageSize, dataArray, routerName,  current, pageTotal } = this.state
@@ -114,7 +120,7 @@ export default class Index extends Component {
             {
               dataArray.map((item, index)=>{
                 return (
-                  <View className='at-col at-col-3 word-block' key={index}>
+                  <View className='at-col at-col-3 word-block' key={index} onClick={()=>{this.selectFont(item.zi)}}>
                     <View className='word-block-insert'>
                       <View>{item.zi}</View>
                       <View className='word-block-pinyin'>{item.pinyin}</View>
