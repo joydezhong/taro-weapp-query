@@ -26,7 +26,7 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch"
   },
-  "author": "",
+  "author": "joyde·zhong",
   "license": "MIT",
   "dependencies": {
     "@tarojs/components": "2.0.7",

@@ -29,6 +29,10 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: '/pages/searchIdiom/index'
       })
+    }else if(item.value === '近反义词'){
+      Taro.navigateTo({
+        url: '/pages/searchBreAfterWord/index'
+      })
     }
   }
 
