@@ -76,14 +76,14 @@ export default class Index extends Component {
             title=''
             type='text'
             placeholder='请输入您要查询的成语...'
-            value={this.state.value}
+            value={value}
             onChange={(e)=>this.handleChange(e)}
             className='search-input'
             placeholderClass='placeholder'
           />
         </View>
         {
-          value && (<View className='details-box'>
+          details.head && (<View className='details-box'>
           <AtCard
             extra={details.pinyin}
             title={value}
@@ -134,7 +134,7 @@ export default class Index extends Component {
                 <Text className='p-h'>成语出处:</Text>
               </View>
               <View className='at-col at-col-9 at-col--wrap'>
-                <Text className='p-des'>{details.from_||'《资治通鉴·周纪威烈王二十三年》：“子乃为所欲为，顾不易耶？何乃自苦如此？求以报仇，不亦难乎？”《隋书·天文志上》：“所以准验辰历，分考次度，其于揆测，唯所欲为之者也。'}</Text>
+                <Text className='p-des'>{details.from_||''}</Text>
               </View>
             </View>
             <View className='at-row p-text'>
@@ -142,7 +142,7 @@ export default class Index extends Component {
                 <Text className='p-h'>引证解释:</Text>
               </View>
               <View className='at-col at-col-9 at-col--wrap'>
-                <Text className='p-des'>{details.yinzhengjs||'想干什么就干什么。《资治通鉴·周威烈王二十三年》：“以子之才，臣事 赵孟 ，必得近幸。子乃为所欲为，顾不易邪？”《明史·黄尊素传》：“﹝奸人﹞为所欲为，莫有顾忌。” 清 唐甄 《潜书·任相》：“是以 居 正 得以尽忠竭才，为所欲为，无不如意。” 秦牧 《艺海拾贝·北京花房》：“这种虚构，决不是主观地随心所欲，为所欲为的虚构。'}</Text>
+                <Text className='p-des'>{details.yinzhengjs||''}</Text>
               </View>
             </View>
             <View className='at-row p-text'>

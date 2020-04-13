@@ -43,6 +43,19 @@
     left: 8%;
     z-index: 2;
   }
+  & .p-text{
+    font-size: 36px;
+    line-height: 1.6;
+    color: #000;
+    & .p-h{
+      //margin-right: 28px;
+      color: #8c8c8c;
+    }
+    & .p-des{
+      //margin-right: 30px;
+      //color: #fadb14;
+    }
+  }
   & .details-box{
     position: relative;
     z-index: 99;

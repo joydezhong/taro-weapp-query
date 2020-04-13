@@ -42,9 +42,9 @@ export default class Index extends Component {
 
   render () {
     const gridData = [{
-        image: 'https://s1.ax1x.com/2020/04/02/GY2mSf.png',
-        value: '新华字典'
-      },
+      image: 'https://s1.ax1x.com/2020/04/02/GY2mSf.png',
+      value: '新华字典'
+    },
       {
         image: 'https://s1.ax1x.com/2020/04/02/GY2lwj.png',
         value: '成语词典'
@@ -66,7 +66,7 @@ export default class Index extends Component {
         value: '帮助中心'
       }]
 
-    const bg = 'https://s1.ax1x.com/2020/04/02/GtkAMt.jpg'
+    // const bg = 'https://s1.ax1x.com/2020/04/13/Gv7rUs.jpg'
 
     return (
       <View className='indexBox'>

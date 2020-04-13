@@ -79,6 +79,7 @@ export default class Index extends Component {
 
   onClick (item) {
     const { routerParam } = this.state
+    console.log(item)
     Taro.navigateTo({
       url: `/pages/searchTextLists/index?option=${routerParam}&name=${item.name}`
     })
@@ -106,7 +107,7 @@ export default class Index extends Component {
   render () {
     const { allPinYin, titleText } = this.state
     return (
-      <View className='search-index-box'>
+      <View className='search-index-box' style='height:100vh'>
         <AtMessage />
         <AtIndexes
           list={allPinYin}
