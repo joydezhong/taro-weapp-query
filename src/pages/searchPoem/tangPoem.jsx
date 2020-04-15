@@ -12,8 +12,8 @@ export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-      value: '',
       actionName: '搜索',
+      searchWord: '',
       details: {},
       authorIndexs: [],
       currentIndexs: [],
@@ -25,19 +25,12 @@ export default class Index extends Component {
 
   componentWillMount () {
     //获取路由参数
-    let params = this.$router.params.option
-    let word = this.$router.params.word
-    console.log(this.$router.params)
-    this.setState({
-      searchWord: word,
-      actionName: '搜索'
-    })
+    // let params = this.$router.params.option
+    // let word = this.$router.params.word
+    // console.log(this.$router.params)
   }
 
   componentDidMount () {
-    // const {searchWord} = this.state
-    // if (searchWord)
-    //   this.getDetails(searchWord)
     this.getLists()
   }
 
@@ -48,13 +41,17 @@ export default class Index extends Component {
   componentDidHide () { }
 
   onActionClick () {
-    // const { searchWord } = this.state
-    // this.getDetails(searchWord)
+    const { searchWord } = this.state
+    console.log(searchWord)
+    // 关键字跳转至结果页
+    Taro.navigateTo({
+      url: `/pages/searchPoem/tangPoemResult?searchWord=${searchWord}`
+    })
   }
   onChange (value) {
-    // this.setState({
-    //   searchWord: value
-    // })
+    this.setState({
+      searchWord: value
+    })
   }
   getLists(){
     let url  = jisu_api_ + '/tangshi/chapter'
@@ -73,24 +70,12 @@ export default class Index extends Component {
       console.log(error,'error')
     })
   }
-  // getDetails(word){
-  //   let url  = jisu_api_ + '/tangshi/chapter'
-  //   Taro.request({
-  //     url: url,
-  //     data: { appkey: jisu_mine_ }
-  //   }).then((res)=>{
-  //     console.log(res,'res')
-  //     if(res.statusCode === 200){
-  //       this.setState({ details: res.data.result, isDisplayDetails: true })}
-  //     else
-  //       Taro.atMessage({ type: 'error', message: res.errMsg })
-  //   }).catch((error)=>{
-  //     Taro.atMessage({ type: 'error', message: error })
-  //     console.log(error,'error')
-  //   })
-  // }
   handleAuthIndex(detailid){
     console.log(detailid, 'detailid')
+    // 带id跳转至结果页
+    Taro.navigateTo({
+      url: `/pages/searchPoem/tangPoemResult?detailid=${detailid}`
+    })
   }
   handlePageChange(params){
     const { current } = params

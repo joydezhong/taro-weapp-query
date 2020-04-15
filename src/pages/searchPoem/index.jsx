@@ -24,7 +24,6 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: '/pages/searchPoem/tangPoem'
       })
-
     }else if(params === 'song'){
       Taro.navigateTo({
         url: '/pages/searchPoem/songPoem'
