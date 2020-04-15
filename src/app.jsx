@@ -33,7 +33,8 @@ class App extends Component {
       'pages/searchTextLists/index',
       'pages/searchResult/index',
       'pages/searchIdiom/index',
-      'pages/searchBreAfterWord/index'
+      'pages/searchBreAfterWord/index',
+      'pages/searchPoem/index'
     ],
     window: {
       backgroundTextStyle: 'light',

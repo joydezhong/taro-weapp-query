@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { AtIcon, AtGrid } from 'taro-ui'
+import { AtIcon, AtNoticebar } from 'taro-ui'
 import './index.scss'
 
 export default class Index extends Component {
@@ -16,72 +16,56 @@ export default class Index extends Component {
   componentDidHide () { }
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '诗词曲'
   }
-  handleClick = (item, index) => {
-    console.log(item, index)
-    if(item.value === '新华字典'){
-      Taro.navigateTo({
-        url: '/pages/searchCharacter/index'
-      })
 
-    }else if(item.value === '成语词典'){
-      Taro.navigateTo({
-        url: '/pages/searchIdiom/index'
-      })
-    }else if(item.value === '汉语词典'){
-      Taro.navigateTo({
-        url: '/pages/searchBreAfterWord/index'
-      })
-    }else if(item.value === '诗词曲'){
-      Taro.navigateTo({
-        url: '/pages/searchPoem/index'
-      })
-    }
+  handleClick(){
+
   }
+
 
   render () {
-    const gridData = [{
-      image: 'https://s1.ax1x.com/2020/04/02/GY2mSf.png',
-      value: '新华字典'
-    },
-      {
-        image: 'https://s1.ax1x.com/2020/04/02/GY2lwj.png',
-        value: '成语词典'
-      },
-      {
-        image: 'https://s1.ax1x.com/2020/04/02/GY2KOg.png',
-        value: '汉语词典'
-      },
-      {
-        image: 'https://s1.ax1x.com/2020/04/02/GY2ZfP.png',
-        value: '诗词曲'
-      },
-      {
-        image: 'https://s1.ax1x.com/2020/04/12/GqX1QU.png',
-        value: '歇后语'
-      },
-      {
-        image: 'https://s1.ax1x.com/2020/04/02/GY2nl8.png',
-        value: '帮助中心'
-      }]
 
-    // const bg = 'https://s1.ax1x.com/2020/04/13/Gv7rUs.jpg'
+    const bg = 'https://s1.ax1x.com/2020/04/14/JpUXqO.jpg'
+    const item1 = 'https://s1.ax1x.com/2020/04/14/JpyMrR.jpg'
+    const item2 = 'https://s1.ax1x.com/2020/04/14/JpynxJ.jpg'
+    const item3 = 'https://s1.ax1x.com/2020/04/14/JpyKM9.jpg'
 
     return (
       <View className='indexBox'>
         <Image className='background' src={bg} />
-        <View className='at-row'>
-          <View className='at-col at-col-5'>
-            <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>
-          </View>
-          <View className='at-col at-col-7'>
-            <Text className='title'></Text>
-          </View>
+        {/*<View className='at-row'>*/}
+        {/*  <View className='at-col at-col-5'>*/}
+        {/*    <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>*/}
+        {/*  </View>*/}
+        {/*  <View className='at-col at-col-7'>*/}
+        {/*    <Text className='title'></Text>*/}
+        {/*  </View>*/}
+        {/*</View>*/}
+        <View className='notic'>
+          <AtNoticebar icon='volume-plus' close={true}>
+            点击下方分类选项，进入具体的诗词类别！
+          </AtNoticebar>
         </View>
         <View className='chooseBox'>
-          <Text className='panel-title'>选择菜单</Text>
-          <AtGrid data={gridData} onClick={this.handleClick} />
+          <View className='itemBox'>
+            <Text className='panel-title'>唐诗</Text>
+            <View className='itemImgBox'>
+              <Image className='itemImg' src={item1} />
+            </View>
+          </View>
+          <View className='itemBox'>
+            <Text className='panel-title'>宋词</Text>
+            <View className='itemImgBox'>
+              <Image className='itemImg' src={item2} />
+            </View>
+          </View>
+          <View className='itemBox'>
+            <Text className='panel-title'>元曲</Text>
+            <View className='itemImgBox'>
+              <Image className='itemImg' src={item3} />
+            </View>
+          </View>
         </View>
       </View>
     )
