@@ -94,6 +94,7 @@ export default class Index extends Component {
             showActionButton
             value={searchWord}
             actionName={actionName}
+            placeholder='请输入要查询的汉字...'
             onChange={this.onChange.bind(this)}
             onActionClick={this.onActionClick.bind(this)}
             onClear={this.handleClear.bind(this)}

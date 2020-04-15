@@ -19,8 +19,21 @@ export default class Index extends Component {
     navigationBarTitleText: '诗词曲'
   }
 
-  handleClick(){
+  handleJump(params){
+    if(params === 'tang'){
+      Taro.navigateTo({
+        url: '/pages/searchPoem/tangPoem'
+      })
 
+    }else if(params === 'song'){
+      Taro.navigateTo({
+        url: '/pages/searchPoem/songPoem'
+      })
+    }else if(params === 'yuan'){
+      Taro.navigateTo({
+        url: '/pages/searchPoem/yuanPoem'
+      })
+    }
   }
 
 
@@ -44,25 +57,25 @@ export default class Index extends Component {
         {/*</View>*/}
         <View className='notic'>
           <AtNoticebar icon='volume-plus' close={true}>
-            点击下方分类选项，进入具体的诗词类别！
+            点击下方分类图片，领略不同朝代的诗词歌赋！
           </AtNoticebar>
         </View>
         <View className='chooseBox'>
           <View className='itemBox'>
             <Text className='panel-title'>唐诗</Text>
-            <View className='itemImgBox'>
+            <View className='itemImgBox' onClick={()=>{this.handleJump('tang')}}>
               <Image className='itemImg' src={item1} />
             </View>
           </View>
           <View className='itemBox'>
             <Text className='panel-title'>宋词</Text>
-            <View className='itemImgBox'>
+            <View className='itemImgBox' onClick={()=>{this.handleJump('song')}}>
               <Image className='itemImg' src={item2} />
             </View>
           </View>
           <View className='itemBox'>
             <Text className='panel-title'>元曲</Text>
-            <View className='itemImgBox'>
+            <View className='itemImgBox' onClick={()=>{this.handleJump('yuan')}}>
               <Image className='itemImg' src={item3} />
             </View>
           </View>

@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { AtMessage, AtCard } from 'taro-ui'
 import { View, Text, Input, Icon, Image } from '@tarojs/components'
 import './index.scss'
-import { jinfan_api_, jinfan_mine_ } from '../../../config/api'
+import { jisu_api_, jisu_mine_ } from '../../../config/api'
 
 export default class Index extends Component {
   config = {
@@ -44,10 +44,10 @@ export default class Index extends Component {
   }
 
   getData(word){
-    let url  = jinfan_api_ + '/cidian/word'
+    let url  = jisu_api_ + '/cidian/word'
     Taro.request({
       url: url,
-      data: { appkey: jinfan_mine_, word: word }
+      data: { appkey: jisu_mine_, word: word }
     }).then((res)=>{
       if(res.statusCode === 200){
         console.log(res.data.result)

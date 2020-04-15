@@ -34,7 +34,8 @@ class App extends Component {
       'pages/searchResult/index',
       'pages/searchIdiom/index',
       'pages/searchBreAfterWord/index',
-      'pages/searchPoem/index'
+      'pages/searchPoem/index',
+      'pages/searchPoem/tangPoem',
     ],
     window: {
       backgroundTextStyle: 'light',
