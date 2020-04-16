@@ -1,0 +1,15 @@
+page{
+  overflow: hidden;
+  position: fixed;
+  background-image: url("https://s1.ax1x.com/2020/04/03/GdELL9.md.jpg");
+  margin: 0;
+  background-size: 100% 100%;
+
+  & .auth-button{
+    display: block;
+    width: 800px;
+    height: 2000px;
+    opacity: 0;
+  }
+}
+
