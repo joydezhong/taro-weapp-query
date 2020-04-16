@@ -37,6 +37,7 @@ class App extends Component {
       'pages/searchPoem/index',
       'pages/searchPoem/tangPoem',
       'pages/searchPoem/tangPoemResult',
+      'pages/searchSaying/index'
     ],
     window: {
       backgroundTextStyle: 'light',

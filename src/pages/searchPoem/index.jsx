@@ -20,19 +20,19 @@ export default class Index extends Component {
   }
 
   handleJump(params){
-    if(params === 'tang'){
+    // if(params === 'tang'){
       Taro.navigateTo({
-        url: '/pages/searchPoem/tangPoem'
+        url: `/pages/searchPoem/tangPoem?option=${params}`
       })
-    }else if(params === 'song'){
-      Taro.navigateTo({
-        url: '/pages/searchPoem/songPoem'
-      })
-    }else if(params === 'yuan'){
-      Taro.navigateTo({
-        url: '/pages/searchPoem/yuanPoem'
-      })
-    }
+    // }else if(params === 'song'){
+    //   Taro.navigateTo({
+    //     url: '/pages/searchPoem/songPoem'
+    //   })
+    // }else if(params === 'yuan'){
+    //   Taro.navigateTo({
+    //     url: '/pages/searchPoem/yuanPoem'
+    //   })
+    // }
   }
 
 

@@ -1,3 +1,45 @@
+.search-result-box{
+  background-image: url("https://s1.ax1x.com/2020/04/13/Gv7rUs.jpg");
+  background-repeat: repeat-y;
+  background-size: 100% 80%;
+  //background-position: center 0;
+}
+.content-box:first-child{
+  padding-top: 42px;
+}
+.content-box:last-child{
+  padding-bottom: 50px;
+}
 .content-box{
-  margin-bottom: 28px;
+  padding-bottom: 30px;
+  font-size: 34px;
+}
+.at-card{
+  background-color: rgba(255,255,255,0.5);
+}
+.postContent{
+  font-size: 34px;
+  text-align: center;
+  line-height: 1.6;
+  & .title{
+    font-weight: bold;
+  }
+  & .author{
+    font-size: 28px;
+    color: #cc747e;
+  }
+}
+.postContentLeft{
+  & .content{
+    text-align: left;
+  }
+}
+.explanation{
+  font-size: 32px;
+}
+.translation{
+  font-size: 32px;
+}
+.appreciation{
+  font-size: 32px;
 }

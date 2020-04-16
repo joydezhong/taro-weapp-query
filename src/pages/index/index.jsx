@@ -37,6 +37,10 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: '/pages/searchPoem/index'
       })
+    }else if(item.value === '歇后语'){
+      Taro.navigateTo({
+        url: '/pages/searchSaying/index'
+      })
     }
   }
 

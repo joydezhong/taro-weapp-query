@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { AtMessage, AtCard } from 'taro-ui'
-import { View, Text, Input, Icon, Image } from '@tarojs/components'
+import { View, Text, Input, RichText, Icon, Image } from '@tarojs/components'
 import './index.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
 
@@ -53,7 +53,7 @@ export default class Index extends Component {
         console.log(res.data.result)
         this.setState({ details: res.data.result })}
       else
-        Taro.atMessage({ type: 'error', message: res.errMsg })
+        Taro.atMessage({ type: 'error', message: res.data.msg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
       console.log(error,'error')
@@ -113,11 +113,7 @@ export default class Index extends Component {
                   <Text className='p-h'>内容:</Text>
                 </View>
                 <View className='at-col at-col-9 at-col--wrap'>
-                  <Text className='p-des'>
-                  {(()=>{
-                    return details.content && details.content.replace(/<[^>]+>/g,"") || ''
-                  })()}
-                  </Text>
+                  <RichText className='p-des' nodes={details.content}></RichText>
                 </View>
               </View>
               <View className='at-row p-text'>
@@ -125,11 +121,7 @@ export default class Index extends Component {
                   <Text className='p-h'>出处:</Text>
                 </View>
                 <View className='at-col at-col-9 at-col--wrap'>
-                  <Text className='p-des'>
-                  {(()=>{
-                    return details.comefrom && details.comefrom.replace(/<[^>]+>/g,"") || ''
-                  })()}
-                  </Text>
+                  <RichText className='p-des' nodes={details.comefrom}></RichText>
                 </View>
               </View>
               <View className='at-row p-text'>
@@ -137,11 +129,7 @@ export default class Index extends Component {
                   <Text className='p-h'>举例:</Text>
                 </View>
                 <View className='at-col at-col-9 at-col--wrap'>
-                  <Text className='p-des'>
-                  {(()=>{
-                    return details.example && details.example.replace(/<[^>]+>/g,"") || ''
-                  })()}
-                  </Text>
+                  <RichText className='p-des' nodes={details.example}></RichText>
                 </View>
               </View>
               <View className='at-row p-text'>
