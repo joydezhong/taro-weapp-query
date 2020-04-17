@@ -28,7 +28,6 @@ export default class Index extends Component {
 
   handleChange (value) {
     // 在改变后启动查询,跳转至结果页
-    console.log(value.target.value,'在改变后启动查询,跳转至结果页')
     this.setState({
       value: value.target.value
     })

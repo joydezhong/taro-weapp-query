@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, RichText } from '@tarojs/components'
-import { AtCard, AtMessage } from 'taro-ui'
+import { AtCard } from 'taro-ui'
 import './tangPoemResult.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
 import { get as getGlobalData } from '../../global_data'
@@ -24,7 +24,6 @@ export default class Index extends Component {
     //获取路由参数 detailid和option
     let option = this.$router.params.option
     let detailid = this.$router.params.detailid
-    console.log(this.$router.params)
     this.setState({
       option: option,
       detailid: detailid
@@ -58,19 +57,16 @@ export default class Index extends Component {
         url: url,
         data: {appkey: jisu_mine_, detailid: detailid}
       }).then((res) => {
-        console.log(res, 'res')
         if(res.data.status === 0){
           this.setState({ details: res.data.result })}
         else
           Taro.atMessage({ type: 'error', message: res.errMsg })
       }).catch((error) => {
         Taro.atMessage({type: 'error', message: error})
-        console.log(error, 'error')
       })
     }else{
       // 读取全局数据
       let details = getGlobalData('searchData')
-      console.log(details, 'getGlobalData')
       this.setState({
         details: details
       })

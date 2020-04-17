@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtPagination  } from 'taro-ui'
-import { connect  } from '@tarojs/redux'
-import { updateTextLists } from '../../store/actions'
+// import { connect  } from '@tarojs/redux'
+// import { updateTextLists } from '../../store/actions'
 import './index.scss'
 import {zidian_api, zidian_mine} from "../../../config/api"
 
@@ -47,7 +47,6 @@ export default class Index extends Component {
     Taro.getStorage({
       key: `${routerName}+${current}`,
       success: (res)=>{
-        console.log('有缓存',res.data, current)
         this.setState({
           dataArray: res.data|| []
         })
@@ -94,7 +93,6 @@ export default class Index extends Component {
   }
 
   handlePage (value) {
-    console.log('翻页',value)
     // this.props.updateTextLists({current: value})
     // this.getData()
     this.setState({

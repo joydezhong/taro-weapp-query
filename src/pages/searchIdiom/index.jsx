@@ -29,14 +29,12 @@ export default class Index extends Component {
 
   handleChange (value) {
     // 在改变后启动查询,跳转至结果页
-    console.log(value.target.value,'在改变后启动查询,跳转至结果页')
     this.setState({
       value: value.target.value
     })
     let reg = /^[\u4E00-\u9FA5]+$/
     if(reg.test(value.target.value)){
       // 开启查询
-      console.log(value.target.value, 'v')
       this.getData(value.target.value)
     }else{
       Taro.atMessage({ type: 'error', message: '请正确输入汉字！' })
@@ -50,13 +48,11 @@ export default class Index extends Component {
       data: { key: chengyu_mine, word: word }
     }).then((res)=>{
       if(res.statusCode === 200){
-        console.log(res.data.result)
         this.setState({ details: res.data.result })}
       else
         Taro.atMessage({ type: 'error', message: res.errMsg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
 

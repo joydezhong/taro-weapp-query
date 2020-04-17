@@ -27,6 +27,7 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/blank/index',
       'pages/home/home',
       'pages/index/index',
       'pages/searchCharacter/index',
@@ -38,7 +39,8 @@ class App extends Component {
       'pages/searchPoem/index',
       'pages/searchPoem/tangPoem',
       'pages/searchPoem/tangPoemResult',
-      'pages/searchSaying/index'
+      'pages/searchSaying/index',
+      'pages/mine/index',
     ],
     window: {
       backgroundTextStyle: 'light',

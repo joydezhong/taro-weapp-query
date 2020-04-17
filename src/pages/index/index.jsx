@@ -19,12 +19,10 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
   handleClick = (item, index) => {
-    console.log(item, index)
     if(item.value === '新华字典'){
       Taro.navigateTo({
         url: '/pages/searchCharacter/index'
       })
-
     }else if(item.value === '成语词典'){
       Taro.navigateTo({
         url: '/pages/searchIdiom/index'
@@ -40,6 +38,10 @@ export default class Index extends Component {
     }else if(item.value === '歇后语'){
       Taro.navigateTo({
         url: '/pages/searchSaying/index'
+      })
+    }else if(item.value === '帮助中心'){
+      Taro.navigateTo({
+        url: '/pages/mine/index'
       })
     }
   }

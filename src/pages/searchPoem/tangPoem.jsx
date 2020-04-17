@@ -55,7 +55,6 @@ export default class Index extends Component {
   componentDidHide () { }
 
   onActionClick () {
-    console.log(this.state.searchWord, '启动搜索')
     // 关键字查询 修改列表数据
     this.handleSearchResult()  //死循环
   }
@@ -73,7 +72,6 @@ export default class Index extends Component {
       url: url,
       data: { appkey: jisu_mine_, keyword: this.state.searchWord, pagesize: 4, pagenum: this.state.currentPage }
     }).then((res)=>{
-      console.log(res,'res')
       if(res.data.status === 0){
         this.setState({
           currentIndexs: res.data.result.list,
@@ -86,7 +84,6 @@ export default class Index extends Component {
         Taro.atMessage({ type: 'error', message: res.data.msg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
   onChange (value) {
@@ -115,11 +112,9 @@ export default class Index extends Component {
         Taro.atMessage({ type: 'error', message: res.data.msg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
   handleAuthIndex(detail){
-    console.log(detail, 'detail')
     // 带id和类别option跳转至结果页 其中搜索列表的时候没有id
     const { option } = this.state
     if(detail.title){ // 传入是对象 说明是搜索列表 存入全局数据

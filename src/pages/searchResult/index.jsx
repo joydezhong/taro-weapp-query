@@ -26,7 +26,6 @@ export default class Index extends Component {
     //获取路由参数
     let params = this.$router.params.option
     let word = this.$router.params.word
-    console.log(this.$router.params)
     this.setState({
       routerOption: params,
       searchWord: word,
@@ -67,7 +66,6 @@ export default class Index extends Component {
         Taro.atMessage({ type: 'error', message: res.errMsg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
   handleClickJian (value) {

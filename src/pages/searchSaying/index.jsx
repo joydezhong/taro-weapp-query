@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import {AtSearchBar, AtMessage, AtPagination, AtNoticebar, AtCard} from 'taro-ui'
 import './index.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
@@ -32,7 +32,6 @@ export default class Index extends Component {
   componentDidHide () { }
 
   onActionClick () {
-    console.log(this.state.searchWord, '启动搜索')
     // 关键字查询 修改列表数据
     this.handleSearchResult()
   }
@@ -43,7 +42,6 @@ export default class Index extends Component {
       url: url,
       data: { appkey: jisu_mine_, keyword: searchWord, pagesize: pageSize, pagenum: currentPage }
     }).then((res)=>{
-      console.log(res,'res')
       if(res.data.status === 0){
         this.setState({
           details: res.data.result.list,
@@ -53,7 +51,6 @@ export default class Index extends Component {
         Taro.atMessage({ type: 'error', message: res.data.msg })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
   onChange (value) {

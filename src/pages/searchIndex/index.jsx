@@ -21,7 +21,6 @@ export default class Index extends Component {
   componentWillMount () {
     //获取路由参数
     let params = this.$router.params && this.$router.params.option
-    console.log(params,'route params')
     let titleText
     if(params === 'pinyin')
       titleText = '字母拼音索引'
@@ -39,7 +38,7 @@ export default class Index extends Component {
     Taro.getStorage({
       key: routerParam,
       success: (res)=>{
-        console.log('有缓存')
+        console.log('缓')
         this.formatting(res.data)
       },
       fail: (res)=>{
@@ -73,13 +72,11 @@ export default class Index extends Component {
       })
     }).catch((error)=>{
       Taro.atMessage({ type: 'error', message: error })
-      console.log(error,'error')
     })
   }
 
   onClick (item) {
     const { routerParam } = this.state
-    console.log(item)
     Taro.navigateTo({
       url: `/pages/searchTextLists/index?option=${routerParam}&name=${item.name}`
     })

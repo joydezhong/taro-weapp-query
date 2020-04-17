@@ -1,0 +1,14 @@
+.photo-box{
+  margin: 88px auto;
+  text-align: center;
+  & .avatar{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+  & .nick{
+    line-height: 2;
+  }
+}
