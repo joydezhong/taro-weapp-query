@@ -40,15 +40,23 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '学生辞典大全，唐诗宋词元曲，李杜诗篇万口传...',
+      path: `pages/searchPoem/tangPoemResult?option=${this.state.option}&detailid=${this.state.detailid}`
+    }
+  }
+
 
   getDetails() {
     const { option ,detailid } = this.state
     let url = ''
-    if(this.state.option === 'tang'){
+    if(option === 'tang'){
       url = jisu_api_ + '/tangshi/detail'
-    }else if(this.state.option === 'song'){
+    }else if(option === 'song'){
       url = jisu_api_ + '/songci/detail'
-    }else if(this.state.option === 'yuan'){
+    }else if(option === 'yuan'){
       url = jisu_api_ + '/yuanqu/detail'
     }
     // let url = jisu_api_ + '/tangshi/detail'

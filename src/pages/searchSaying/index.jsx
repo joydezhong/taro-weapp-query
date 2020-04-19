@@ -21,6 +21,14 @@ export default class Index extends Component {
     }
   }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '歇后语大全，勤查字典是一种人生态度！',
+      path: 'pages/searchSaying/index'
+    }
+  }
+
   componentWillMount () { }
 
   componentDidMount () { }

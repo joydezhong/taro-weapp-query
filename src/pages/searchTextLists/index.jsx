@@ -42,6 +42,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: `pages/searchTextLists/index?option=${this.state.routerOption}&name=${this.state.routerName}`
+    }
+  }
+
   getData(){
     const { routerName, current } = this.state  //下次再获取数据 先从缓存中取 此时pageTotal是默认的null
     Taro.getStorage({

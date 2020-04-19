@@ -17,7 +17,7 @@ const store = configStore()
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount () { }
 
   componentDidShow () {}
 
@@ -27,9 +27,9 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/blank/index',
-      'pages/home/home',
+      // 'pages/blank/index',
       'pages/index/index',
+      'pages/home/home',
       'pages/searchCharacter/index',
       'pages/searchIndex/index',
       'pages/searchTextLists/index',

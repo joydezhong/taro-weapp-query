@@ -6,7 +6,10 @@ import { zidian_api, zidian_mine } from '../../../config/api'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '搜索结果'
+    navigationBarTitleText: '搜索结果',
+    navigationBarBackgroundColor: "#5199ff",
+    navigationBarTextStyle: "white"
+    //#5199ff
   }
 
   constructor () {
@@ -19,6 +22,14 @@ export default class Index extends Component {
       openJian: true,
       openXiang: false,
       isDisplayDetails: false
+    }
+  }
+
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: `pages/searchResult/index?option=${this.state.routerParam}&word=${this.state.searchWord}`
     }
   }
 

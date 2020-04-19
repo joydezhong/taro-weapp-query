@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import { AtAvatar, AtList, AtListItem } from 'taro-ui'
 import './index.scss'
 // import { get as getGlobalData } from '../../global_data'
@@ -16,8 +16,28 @@ export default class Index extends Component {
     navigationBarTitleText: '帮助中心'
   }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '学生辞典大全，学生的学习、查询小助手',
+      path: 'pages/mine/index'
+    }
+  }
+
   componentWillMount () {
     // let userInfo = getGlobalData('userInfo')
+    this.beforeUserinfo()
+  }
+
+  componentDidMount () { }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { }
+
+  componentDidHide () { }
+
+  beforeUserinfo(){
     let that = this
     Taro.getStorage({
       key: 'userInfo',
@@ -29,13 +49,18 @@ export default class Index extends Component {
     })
   }
 
-  componentDidMount () { }
+  getUserInfo(params){
+    if(params.detail && params.detail.userInfo){
+      Taro.setStorage({
+        key: "userInfo",
+        data: params.detail.userInfo
+      })
+      this.setState({
+        userInfo: params.detail.userInfo
+      })
+    }
+  }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   handleClick(){
     console.log(0)
@@ -47,8 +72,20 @@ export default class Index extends Component {
     return (
       <View className='help-box'>
         <View className='photo-box'>
-          <AtAvatar className='avatar' circle image={userInfo.avatarUrl}></AtAvatar>
-          <Text className='nick'>{userInfo.nickName}</Text>
+          {
+            userInfo.nickName ? (<View>
+              <AtAvatar className='avatar' circle image={userInfo.avatarUrl}></AtAvatar>
+              <Text className='nick'>{userInfo.nickName}</Text>
+            </View>) : (<View>
+                <Button
+                  className='auth-button'
+                  openType='getUserInfo'
+                  onGetUserInfo={this.getUserInfo.bind(this)}>
+                  <AtAvatar className='avatar' circle image=''></AtAvatar>
+                  <Text className='nick gray'>点击显示微信头像</Text>
+              </Button>
+            </View>)
+          }
         </View>
         <View className='tool-box'>
           <AtList>

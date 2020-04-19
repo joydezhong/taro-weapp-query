@@ -11,4 +11,16 @@
   & .nick{
     line-height: 2;
   }
+  & .gray{
+    color: #8c8c8c;
+  }
+  & .auth-button{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+     &::after{
+      border: none;
+    }
+  }
 }

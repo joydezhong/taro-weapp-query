@@ -5,7 +5,9 @@ import './index.scss'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '新华字典'
+    navigationBarTitleText: '新华字典',
+    navigationBarBackgroundColor: "#5099ff",
+    navigationBarTextStyle: "white"
   }
 
   constructor () {
@@ -25,6 +27,14 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: 'pages/searchCharacter/index'
+    }
+  }
 
   handleChange (value) {
     // 在改变后启动查询,跳转至结果页
@@ -56,12 +66,12 @@ export default class Index extends Component {
   }
 
   render () {
-    const bg = 'https://s1.ax1x.com/2020/04/10/G7C3KU.jpg'
-
+    // const bg = 'https://s1.ax1x.com/2020/04/18/JnygGF.jpg'
+    // const bg = '../../assets/images/md01.jpg'
     return (
       <View className='search-character-box'>
         <AtMessage />
-        <Image className='background' src={bg} />
+        <Image className='background' lazyLoad={true} src='../../assets/images/md01.jpg' />
         <Text className='title'></Text>
         <Icon className='search-icon' size='18' type='search' />
         <Input

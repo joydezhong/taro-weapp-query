@@ -54,6 +54,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '学生辞典大全，唐诗宋词元曲，李杜诗篇万口传...',
+      path: `pages/searchPoem/tangPoem?option=${this.state.option}`
+    }
+  }
+
   onActionClick () {
     // 关键字查询 修改列表数据
     this.handleSearchResult()  //死循环

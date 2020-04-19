@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { AtIcon, AtNoticebar } from 'taro-ui'
 import './index.scss'
 
@@ -17,6 +17,14 @@ export default class Index extends Component {
 
   config = {
     navigationBarTitleText: '诗词曲'
+  }
+
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '学生辞典大全，唐诗宋词元曲，李杜诗篇万口传...',
+      path: 'pages/searchPoem/index'
+    }
   }
 
   handleJump(params){
@@ -45,7 +53,7 @@ export default class Index extends Component {
 
     return (
       <View className='indexBox'>
-        <Image className='background' src={bg} />
+        <Image className='background' lazyLoad={true} src={bg} />
         {/*<View className='at-row'>*/}
         {/*  <View className='at-col at-col-5'>*/}
         {/*    <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>*/}
@@ -63,19 +71,19 @@ export default class Index extends Component {
           <View className='itemBox'>
             <Text className='panel-title'>唐诗</Text>
             <View className='itemImgBox' onClick={()=>{this.handleJump('tang')}}>
-              <Image className='itemImg' src={item1} />
+              <Image className='itemImg' lazyLoad={true} src={item1} />
             </View>
           </View>
           <View className='itemBox'>
             <Text className='panel-title'>宋词</Text>
             <View className='itemImgBox' onClick={()=>{this.handleJump('song')}}>
-              <Image className='itemImg' src={item2} />
+              <Image className='itemImg' lazyLoad={true} src={item2} />
             </View>
           </View>
           <View className='itemBox'>
             <Text className='panel-title'>元曲</Text>
             <View className='itemImgBox' onClick={()=>{this.handleJump('yuan')}}>
-              <Image className='itemImg' src={item3} />
+              <Image className='itemImg' lazyLoad={true} src={item3} />
             </View>
           </View>
         </View>

@@ -18,6 +18,14 @@ export default class Index extends Component {
     }
   }
 
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: `pages/searchIndex/index?option=${this.state.routerParam}`
+    }
+  }
+
   componentWillMount () {
     //获取路由参数
     let params = this.$router.params && this.$router.params.option

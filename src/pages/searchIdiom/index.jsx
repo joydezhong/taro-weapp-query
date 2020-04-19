@@ -6,7 +6,9 @@ import { zidian_api, chengyu_mine } from '../../../config/api'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '成语词典'
+    navigationBarTitleText: '成语词典',
+    navigationBarBackgroundColor: "#5099ff",
+    navigationBarTextStyle: "white"
   }
 
   constructor () {
@@ -26,6 +28,14 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '成语词典，勤查字典是一种人生态度！',
+      path: 'pages/searchIdiom/index'
+    }
+  }
 
   handleChange (value) {
     // 在改变后启动查询,跳转至结果页
@@ -58,13 +68,13 @@ export default class Index extends Component {
 
   render () {
     const { details, value } = this.state
-    const bg = 'https://s1.ax1x.com/2020/04/10/G7Auct.jpg'
-
+    // const bg = 'https://s1.ax1x.com/2020/04/18/JnycPU.jpg'
+    // const bg = '../../assets/images/md02.jpg'
     return (
       <View className='search-idiom-box'>
         <AtMessage />
         <View className='search-box'>
-          <Image className='background' src={bg} />
+          <Image className='background' lazyLoad={true} src='../../assets/images/md02.jpg' />
           <Text className='title'></Text>
           <Icon className='search-icon' size='18' type='search' />
           <Input

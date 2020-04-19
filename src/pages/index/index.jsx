@@ -5,7 +5,9 @@ import './index.scss'
 
 export default class Index extends Component {
 
-  componentWillMount () { }
+  componentWillMount () {
+    this.handleAuthJump()
+  }
 
   componentDidMount () { }
 
@@ -16,8 +18,29 @@ export default class Index extends Component {
   componentDidHide () { }
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '学生辞典大全',
+    navigationBarBackgroundColor: "#026aed",
+    navigationBarTextStyle: "white"
+    //#026aed
   }
+
+  // wx转发
+  onShareAppMessage (res) {
+    return {
+      title: '学生辞典大全，学生的学习查询小助手',
+      path: '/page/index/index'
+    }
+  }
+
+  handleAuthJump(){
+    let value = Taro.getStorageSync('userInfo')
+    if (!value) {
+      Taro.navigateTo({
+        url: '/pages/home/home'
+      })
+    }
+  }
+
   handleClick = (item, index) => {
     if(item.value === '新华字典'){
       Taro.navigateTo({
@@ -76,7 +99,7 @@ export default class Index extends Component {
 
     return (
       <View className='indexBox'>
-        <Image className='background' src={bg} />
+        <Image className='background' lazyLoad={true} src={bg} />
         <View className='at-row'>
           <View className='at-col at-col-5'>
             <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>
