@@ -62,8 +62,10 @@ export default class Index extends Component {
   }
 
 
-  handleClick(){
-    console.log(0)
+  handleClick(params){
+    Taro.navigateTo({
+      url: `/pages/mine/details?option=${params}`
+    })
   }
 
   render () {
@@ -94,34 +96,34 @@ export default class Index extends Component {
               note='收藏的成语词语诗词曲...'
               arrow='right'
               iconInfo={{ size: 25, color: '#ff4995', value: 'bookmark', }}
-              onClick={this.handleClick} />
+              onClick={()=>{this.handleClick('collect')}} />
             <AtListItem
               title='帮助详情'
               note='各类小工具的使用帮助...'
               arrow='right'
               iconInfo={{ size: 25, color: '#78A4FA', value: 'help', }}
-              onClick={this.handleClick} />
+              onClick={()=>{this.handleClick('help')}} />
             <AtListItem
               title='在线客服'
               arrow='right'
               iconInfo={{ size: 25, color: '#8c8c8c', value: 'message', }}
-              onClick={this.handleClick} />
+              onClick={()=>{this.handleClick('service')}} />
             <AtListItem
               title='评分反馈'
               note='您的建议就是我们最大的动力...'
               iconInfo={{ size: 25, color: '#faad14', value: 'star', }}
               arrow='right'
-              onClick={this.handleClick} />
-            <AtListItem
-              title='交流学习'
-              arrow='right'
-              iconInfo={{ size: 25, color: '#13c2c2', value: 'sketch', }}
-              onClick={this.handleClick} />
+              onClick={()=>{this.handleClick('feedback')}} />
+            {/*<AtListItem*/}
+            {/*  title='交流学习'*/}
+            {/*  arrow='right'*/}
+            {/*  iconInfo={{ size: 25, color: '#13c2c2', value: 'sketch', }}*/}
+            {/*  onClick={this.handleClick} />*/}
             <AtListItem
               title='关于'
               arrow='right'
               iconInfo={{ size: 25, color: '#8c8c8c', value: 'tag', }}
-              onClick={this.handleClick} />
+              onClick={()=>{this.handleClick('about')}} />
           </AtList>
         </View>
       </View>

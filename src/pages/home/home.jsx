@@ -13,26 +13,7 @@ export default class Index extends Component {
   }
 
   componentWillMount () {
-    // Taro.getStorage({
-    //   key: 'userInfo',
-    //   success: function (res) {
-    //     if(res.data) {
-    //       Taro.navigateTo({
-    //         url: '/pages/index/index'
-    //       })
-    //     }
-    //   }
-    // })
-
     this.handleOpenPage()
-
-    // wx.cloud.callFunction({
-    //   name: 'getKey',
-    //   complete: res => {
-    //     console.log('callFunction test result: ', res)
-    //   }
-    // })
-
   }
 
   componentDidMount () { }
@@ -82,7 +63,26 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: '/pages/index/index'
       })
+      this.handleLogin(params.detail.userInfo) // 登录
     }
+  }
+
+  handleLogin(info){
+    Taro.cloud
+      .callFunction({
+        name: 'user', // 用户登录,
+        data: {
+          nickName: info.nickName,
+          avatarUrl: info.avatarUrl,
+          gender: info.gender,
+          province: info.province,
+          city: info.city
+        }
+      })
+      .then(res => {
+        console.log('用户信息', res)
+      })
+      .catch(console.log)
   }
 
   render () {
