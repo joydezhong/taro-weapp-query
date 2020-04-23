@@ -53,7 +53,7 @@ class App extends Component {
       'pages/searchPoem/tangPoem',
       'pages/searchPoem/tangPoemResult',
       'pages/searchSaying/index',
-      // 'pages/mine/index',
+      'pages/mine/index',
       'pages/mine/details',
     ],
     window: {

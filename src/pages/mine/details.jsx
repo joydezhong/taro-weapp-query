@@ -21,7 +21,7 @@ export default class Index extends Component {
   onShareAppMessage (res) {
     return {
       title: '学生辞典大全，学生的学习、查询小助手',
-      path: 'pages/mine/details'
+      path: `pages/mine/details?option=${this.state.option}`
     }
   }
 
@@ -36,7 +36,7 @@ export default class Index extends Component {
     }else if(option === 'service'){
       titleText = '在线客服'
     }else if(option === 'feedback'){
-      titleText = '评分反馈'
+      titleText = '意见反馈'
     }else if(option === 'about'){
       titleText = '关于'
     }
@@ -70,6 +70,18 @@ export default class Index extends Component {
     return (
       <View className='detail-box'>
         {
+          option === 'collect' && (
+            <View className='collect-box'>
+              <AtCard
+                title='我的收藏'
+                className='at-card-box'
+              >
+                <View>空空如也，快去收藏吧！</View>
+              </AtCard>
+            </View>
+          )
+        }
+        {
           option === 'help' && (
             <View className='help-box'>
               <AtCard
@@ -89,6 +101,24 @@ export default class Index extends Component {
                 className='at-card-box'
               >
                 汉语词典，用于查询汉语词组的拼读、解释、出自、举例、近反义词、对应英文等，用户可以通过界面输入词语精准的搜索到需要的结果。
+              </AtCard>
+              <AtCard
+                title='唐诗宋词元曲'
+                className='at-card-box'
+              >
+                诗词曲菜单，用于查询并欣赏唐诗宋词和元曲，这里有你熟悉的李白、杜甫，也有你熟悉的浪淘沙、清平乐，用户可以通过界面输入诗句或诗人精准的搜索到需要的结果，也可以在搜索框下面选择自己喜欢的诗词，进而可以查阅内容、注解和赏析，领略作者的万千思绪。
+              </AtCard>
+            </View>
+          )
+        }
+        {
+          option === 'feedback' && (
+            <View className='feedback-box'>
+              <AtCard
+                title='意见反馈'
+                className='at-card-box'
+              >
+                <View>暂且无！</View>
               </AtCard>
             </View>
           )

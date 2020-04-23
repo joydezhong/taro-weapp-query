@@ -61,11 +61,15 @@ export default class Index extends Component {
     }
   }
 
-
   handleClick(params){
     Taro.navigateTo({
       url: `/pages/mine/details?option=${params}`
     })
+  }
+
+  handleContact (e) {
+    console.log(e.detail.path)
+    console.log(e.detail.query)
   }
 
   render () {
@@ -103,17 +107,36 @@ export default class Index extends Component {
               arrow='right'
               iconInfo={{ size: 25, color: '#78A4FA', value: 'help', }}
               onClick={()=>{this.handleClick('help')}} />
-            <AtListItem
-              title='在线客服'
-              arrow='right'
-              iconInfo={{ size: 25, color: '#8c8c8c', value: 'message', }}
-              onClick={()=>{this.handleClick('service')}} />
-            <AtListItem
-              title='评分反馈'
-              note='您的建议就是我们最大的动力...'
-              iconInfo={{ size: 25, color: '#faad14', value: 'star', }}
-              arrow='right'
-              onClick={()=>{this.handleClick('feedback')}} />
+            <View className='contact-view'>
+              <AtListItem
+                title='在线客服'
+                arrow='right'
+                iconInfo={{ size: 25, color: '#8c8c8c', value: 'message', }}
+                className='contract-item'
+              />
+              {
+                userInfo.nickName ? (<Button
+                  className='contact-button'
+                  openType='contact'
+                  onContact={this.handleContact.bind(this)}>客服</Button>) : (
+                  <Button
+                    className='contact-button'
+                    openType='getUserInfo'
+                    onGetUserInfo={this.getUserInfo.bind(this)}>登录体验</Button>)
+              }
+            </View>
+            <View className='feedback-view'>
+              <AtListItem
+                title='意见反馈'
+                note='您的建议就是我们最大的动力...'
+                iconInfo={{ size: 25, color: '#faad14', value: 'star', }}
+                arrow='right'
+              />
+              <Button
+                className='feedback-button'
+                openType='feedback'
+                >反馈</Button>
+            </View>
             {/*<AtListItem*/}
             {/*  title='交流学习'*/}
             {/*  arrow='right'*/}

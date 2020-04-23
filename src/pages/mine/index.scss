@@ -24,3 +24,16 @@
     }
   }
 }
+
+.tool-box{
+  & .contact-view, & .feedback-view{
+    position: relative;
+  }
+  & .contact-button, & .feedback-button{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+}
