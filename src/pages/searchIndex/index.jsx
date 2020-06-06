@@ -3,26 +3,17 @@ import { View} from '@tarojs/components'
 import {AtIndexes, AtMessage} from 'taro-ui'
 import './index.scss'
 import { zidian_api, zidian_mine } from '../../../config/api'
+import Loading from '../../components/loading'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '搜索查询'
-  }
 
   constructor () {
     super(...arguments)
     this.state = {
       titleText: '',
       routerParam: null,
-      allPinYin: []
-    }
-  }
-
-  // wx转发
-  onShareAppMessage (res) {
-    return {
-      title: '新华字典，勤查字典是一种人生态度！',
-      path: `pages/searchIndex/index?option=${this.state.routerParam}`
+      allPinYin: [],
+      isLoading: true,
     }
   }
 
@@ -49,7 +40,7 @@ export default class Index extends Component {
         console.log('缓')
         this.formatting(res.data)
       },
-      fail: (res)=>{
+      fail: ()=>{
         this.loadServerData()
       }
     })
@@ -60,6 +51,18 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  config = {
+    navigationBarTitleText: '搜索查询'
+  }
+
+   // wx转发
+   onShareAppMessage () {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: `pages/searchIndex/index?option=${this.state.routerParam}`
+    }
+  }
 
   loadServerData(){
     const { routerParam } = this.state
@@ -93,12 +96,12 @@ export default class Index extends Component {
   formatting(res){
     let dataArray = []
     let initCharacter = ''
-    res.forEach((e,i)=>{
+    res.forEach((e)=>{
       let itemObject = {}
       itemObject.title = e.pinyin_key || e.bihua
       itemObject.key = e.pinyin_key || e.bihua
       itemObject.items = res.filter(item => (item.pinyin_key||item.bihua) === (e.pinyin_key||e.bihua))
-      itemObject.items.map((item,index,array)=>{
+      itemObject.items.map((item)=>{
         item.name = item.pinyin||item.bushou
       })
       if(initCharacter != (e.pinyin_key||e.bihua)){
@@ -106,11 +109,14 @@ export default class Index extends Component {
         initCharacter = e.pinyin_key||e.bihua
       }
     })
-    this.setState({ allPinYin: dataArray })
+    this.setState({ 
+      allPinYin: dataArray,
+      isLoading: false
+     })
   }
 
   render () {
-    const { allPinYin, titleText } = this.state
+    const { allPinYin, titleText, isLoading } = this.state
     return (
       <View className='search-index-box' style='height:100vh'>
         <AtMessage />
@@ -121,6 +127,7 @@ export default class Index extends Component {
         >
           <View className='cus-text'>{titleText}</View>
         </AtIndexes>
+        <Loading isLoading={isLoading} />
       </View>
     )
   }

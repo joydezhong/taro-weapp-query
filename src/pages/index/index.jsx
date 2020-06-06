@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { AtIcon, AtGrid } from 'taro-ui'
 import './index.scss'
 
@@ -25,10 +25,10 @@ export default class Index extends Component {
   }
 
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '学生辞典大全，学生的学习查询小助手',
-      path: '/page/index/index'
+      path: '/pages/index/index'
     }
   }
 
@@ -41,7 +41,7 @@ export default class Index extends Component {
     }
   }
 
-  handleClick = (item, index) => {
+  handleClick = (item) => {
     if(item.value === '新华字典'){
       Taro.navigateTo({
         url: '/pages/searchCharacter/index'
@@ -102,7 +102,7 @@ export default class Index extends Component {
         <Image className='background' lazyLoad={true} src={bg} />
         <View className='at-row'>
           <View className='at-col at-col-5'>
-            <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000'/>
+            <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000' />
           </View>
           <View className='at-col at-col-7'>
             <Text className='title'></Text>

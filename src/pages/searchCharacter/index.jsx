@@ -4,17 +4,13 @@ import { View, Text, Input, Icon, Image } from '@tarojs/components'
 import './index.scss'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '新华字典',
-    navigationBarBackgroundColor: "#5099ff",
-    navigationBarTextStyle: "white"
-  }
 
   constructor () {
     super(...arguments)
     this.state = {
       value: '',
-      option: ''
+      // option: '',
+      lazy: true
     }
   }
 
@@ -28,8 +24,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '新华字典',
+    navigationBarBackgroundColor: "#5099ff",
+    navigationBarTextStyle: "white"
+  }
+
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '新华字典，勤查字典是一种人生态度！',
       path: 'pages/searchCharacter/index'
@@ -41,7 +43,7 @@ export default class Index extends Component {
     this.setState({
       value: value.target.value
     })
-    let reg = /^[\u4E00-\u9FA5]+$/
+    let reg = /^[\u4E00-\u9FA5]{1}$/
     if(reg.test(value.target.value)){
       Taro.navigateTo({
         url: `/pages/searchResult/index?word=${value.target.value}` //直接enter只传入汉字
@@ -62,7 +64,7 @@ export default class Index extends Component {
       Taro.navigateTo({
         url: `/pages/searchIndex/index?option=${value}`
       })
-    this.setState({option: value})
+    // this.setState({option: value})
   }
 
   render () {
@@ -71,7 +73,7 @@ export default class Index extends Component {
     return (
       <View className='search-character-box'>
         <AtMessage />
-        <Image className='background' lazyLoad={true} src='../../assets/images/md01.jpg' />
+        <Image className='background' lazyLoad={this.state.lazy} src='../../assets/images/md01.jpg' />
         <Text className='title'></Text>
         <Icon className='search-icon' size='18' type='search' />
         <Input
@@ -79,6 +81,7 @@ export default class Index extends Component {
           title=''
           type='text'
           placeholder='请输入您要查询的汉字...'
+          maxLength='1'
           value={this.state.value}
           onChange={(e)=>this.handleChange(e)}
           className='search-input'

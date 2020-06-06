@@ -1,44 +1,32 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { AtSearchBar, AtMessage, AtAccordion, AtList, AtListItem } from 'taro-ui'
+import { AtSearchBar, AtMessage, AtAccordion, AtList } from 'taro-ui'
 import './index.scss'
 import { zidian_api, zidian_mine } from '../../../config/api'
+import Loading from '../../components/loading'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '搜索结果',
-    navigationBarBackgroundColor: "#5199ff",
-    navigationBarTextStyle: "white"
-    //#5199ff
-  }
 
   constructor () {
     super(...arguments)
     this.state = {
-      value: '',
+      // value: '',
       actionName: '搜索',
-      routerOption: null,
+      // routerOption: null,
       details: {},
       openJian: true,
       openXiang: false,
-      isDisplayDetails: false
-    }
-  }
-
-  // wx转发
-  onShareAppMessage (res) {
-    return {
-      title: '新华字典，勤查字典是一种人生态度！',
-      path: `pages/searchResult/index?option=${this.state.routerParam}&word=${this.state.searchWord}`
+      isDisplayDetails: false,
+      isLoading: false
     }
   }
 
   componentWillMount () {
     //获取路由参数
-    let params = this.$router.params.option
+    // let params = this.$router.params.option
     let word = this.$router.params.word
     this.setState({
-      routerOption: params,
+      // routerOption: params,
       searchWord: word,
       actionName: '搜索'
     })
@@ -56,9 +44,29 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  // wx转发
+  onShareAppMessage () {
+    return {
+      title: '新华字典，勤查字典是一种人生态度！',
+      path: `pages/searchResult/index?option=${this.state.routerParam}&word=${this.state.searchWord}`
+    }
+  }
+
+  config = {
+    navigationBarTitleText: '搜索结果',
+    navigationBarBackgroundColor: "#5199ff",
+    navigationBarTextStyle: "white"
+    //#5199ff
+  }
+
   onActionClick () {
     const { searchWord } = this.state
-    this.getDetails(searchWord)
+    let reg = /^[\u4E00-\u9FA5]{1}$/
+    if(reg.test(searchWord)){
+      this.getDetails(searchWord)
+    }else{
+      Taro.atMessage({ type: 'error', message: '请正确输入汉字！' })
+    }
   }
   onChange (value) {
     this.setState({
@@ -66,13 +74,14 @@ export default class Index extends Component {
     })
   }
   getDetails(word){
+    this.setState({isLoading: true})
     let url  = zidian_api + '/xhzd/query'
     Taro.request({
       url: url,
       data: { key: zidian_mine, word: word }
     }).then((res)=>{
       if(res.statusCode === 200){
-        this.setState({ details: res.data.result, isDisplayDetails: true })}
+        this.setState({ details: res.data.result, isDisplayDetails: true, isLoading: false })}
       else
         Taro.atMessage({ type: 'error', message: res.errMsg })
     }).catch((error)=>{
@@ -90,11 +99,11 @@ export default class Index extends Component {
     })
   }
   handleClear () {
-    this.setState({ searchWord: '' })
+    this.setState({ searchWord: '', details: {} })
   }
 
   render () {
-    const { details, searchWord, actionName, isDisplayDetails } = this.state
+    const { details, searchWord, actionName, isDisplayDetails, isLoading } = this.state
     return (
       <View className='search-result-box'>
         <AtMessage />
@@ -104,6 +113,7 @@ export default class Index extends Component {
             value={searchWord}
             actionName={actionName}
             placeholder='请输入要查询的汉字...'
+            maxLength='1'
             onChange={this.onChange.bind(this)}
             onActionClick={this.onActionClick.bind(this)}
             onClear={this.handleClear.bind(this)}
@@ -176,6 +186,7 @@ export default class Index extends Component {
           {/*</View>*/}
         </View>)
         }
+        <Loading isLoading={isLoading} />
       </View>
     )
   }

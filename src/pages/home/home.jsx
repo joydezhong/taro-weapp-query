@@ -47,10 +47,10 @@ export default class Index extends Component {
   }
 
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '学生辞典大全，学生的学习、查询小助手',
-      path: '/page/home/home'
+      path: '/pages/home/home'
     }
   }
 

@@ -39,8 +39,6 @@ class App extends Component {
 
   config = {
     pages: [
-      // 'pages/mine/index',
-      // 'pages/blank/index',
       'pages/index/index',
       'pages/home/home',
       'pages/searchCharacter/index',

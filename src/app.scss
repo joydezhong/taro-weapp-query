@@ -1,0 +1,14 @@
+page{
+  // loading样式
+  & .at-toast{
+    & .toast-body{
+      background-color: rgba(0,0,0,0.5) !important;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    & .toast-body-content__img-item{
+      width: 80px;
+      height: 80px;
+    }
+  }
+}

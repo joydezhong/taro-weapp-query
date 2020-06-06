@@ -3,11 +3,9 @@ import { View } from '@tarojs/components'
 import {AtSearchBar, AtMessage, AtPagination, AtNoticebar, AtCard} from 'taro-ui'
 import './index.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
+import Loading from '../../components/loading'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '歇后语查询'
-  }
 
   constructor () {
     super(...arguments)
@@ -17,15 +15,8 @@ export default class Index extends Component {
       details: [],
       total: null,
       currentPage: 1,
-      pageSize: 2
-    }
-  }
-
-  // wx转发
-  onShareAppMessage (res) {
-    return {
-      title: '歇后语大全，勤查字典是一种人生态度！',
-      path: 'pages/searchSaying/index'
+      pageSize: 2,
+      isLoading: false
     }
   }
 
@@ -39,11 +30,26 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '歇后语查询'
+  }
+
+  // wx转发
+  onShareAppMessage () {
+    return {
+      title: '歇后语大全，勤查字典是一种人生态度！',
+      path: 'pages/searchSaying/index'
+    }
+  }
+
+
   onActionClick () {
     // 关键字查询 修改列表数据
     this.handleSearchResult()
+    this.setState({currentPage: 1})
   }
   handleSearchResult(){
+    this.setState({isLoading:true})
     const {searchWord, pageSize, currentPage} = this.state
     let url  = jisu_api_ + '/xhy/search'
     Taro.request({
@@ -53,7 +59,8 @@ export default class Index extends Component {
       if(res.data.status === 0){
         this.setState({
           details: res.data.result.list,
-          total: res.data.result.total
+          total: res.data.result.total,
+          isLoading: false
         })
       } else
         Taro.atMessage({ type: 'error', message: res.data.msg })
@@ -77,7 +84,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const { searchWord, actionName, details, total, pageSize, currentPage } = this.state
+    const { searchWord, actionName, details, total, pageSize, currentPage, isLoading } = this.state
     return (
       <View className='search-result-box'>
         <AtMessage />
@@ -101,9 +108,9 @@ export default class Index extends Component {
             return(
               <View key={index} className='item-box'>
                 <AtCard
-                  title={item.content}
+                  title={`引言：${item.content}`}
                 >
-                  {item.answer}
+                  后衬：{item.answer}
                 </AtCard>
               </View>
             )
@@ -121,6 +128,7 @@ export default class Index extends Component {
             </AtPagination>
           )
         }
+        <Loading isLoading={isLoading} />
       </View>
     )
   }

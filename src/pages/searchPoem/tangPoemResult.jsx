@@ -4,17 +4,17 @@ import { AtCard } from 'taro-ui'
 import './tangPoemResult.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
 import { get as getGlobalData } from '../../global_data'
+import icon1 from '../../assets/images/icon1.jpg'
+import icon2 from '../../assets/images/icon2.jpg'
+import icon3 from '../../assets/images/icon3.jpg'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '诗词曲欣赏'
-  }
 
   constructor () {
     super(...arguments)
     this.state = {
       details: {},
-      detailLists: [],
+      // detailLists: [],
       option: '',
       detailid: null
     }
@@ -40,8 +40,12 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '诗词曲欣赏'
+  }
+
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '学生辞典大全，唐诗宋词元曲，李杜诗篇万口传...',
       path: `pages/searchPoem/tangPoemResult?option=${this.state.option}&detailid=${this.state.detailid}`
@@ -86,13 +90,16 @@ export default class Index extends Component {
     const { details, option } = this.state
     let icon = '', dynasty = ''
     if(option === 'tang'){
-      icon = 'https://s1.ax1x.com/2020/04/15/JiGhm8.jpg'
+      // icon = 'https://s1.ax1x.com/2020/04/15/JiGhm8.jpg'
+      icon = icon1
       dynasty = '唐'
     }else if(option === 'song'){
-      icon = 'https://s1.ax1x.com/2020/04/15/JiG40S.jpg'
+      // icon = 'https://s1.ax1x.com/2020/04/15/JiG40S.jpg'
+      icon = icon2
       dynasty = '宋'
     }else if(option === 'yuan'){
-      icon = 'https://s1.ax1x.com/2020/04/15/JiG5Tg.jpg'
+      // icon = 'https://s1.ax1x.com/2020/04/15/JiG5Tg.jpg'
+      icon = icon3
       dynasty = '元'
     }
 

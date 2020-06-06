@@ -140,6 +140,10 @@ export default class Index extends Component {
               >
                 <View className='version'>V1.0.0</View>
                 <View>上线汉字、成语、词语、唐诗宋词元曲、歇后语查询</View>
+                <View className='version'>V1.1.0</View>
+                <View>优化授权，更新页面转发，更新帮助中心内功能</View>
+                <View className='version'>V1.2.0</View>
+                <View>更加严谨的用户输入模式，更加贴近用户的实际需求和使用习惯，提升应用响应速度，优化用户体验，</View>
               </AtCard>
             </View>
           )

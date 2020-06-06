@@ -3,19 +3,20 @@ import { AtMessage, AtCard } from 'taro-ui'
 import { View, Text, Input, RichText, Icon, Image } from '@tarojs/components'
 import './index.scss'
 import { jisu_api_, jisu_mine_ } from '../../../config/api'
+import banner from '../../assets/images/md03.jpg'
+import thumb from '../../assets/images/G7xKAI.png'
+//  https://s1.ax1x.com/2020/04/11/G7xKAI.png
+import Loading from '../../components/loading'
 
 export default class Index extends Component {
-  config = {
-    navigationBarTitleText: '汉语词典',
-    navigationBarBackgroundColor: "#5099ff",
-    navigationBarTextStyle: "white"
-  }
 
   constructor () {
     super(...arguments)
     this.state = {
       value: '',
-      details: {}
+      lazy: true,
+      details: {},
+      isLoading: false
     }
   }
 
@@ -29,8 +30,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '汉语词典',
+    navigationBarBackgroundColor: "#5099ff",
+    navigationBarTextStyle: "white"
+  }
+
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '汉语词典，勤查字典是一种人生态度！',
       path: 'pages/searchBreAfterWord/index'
@@ -40,13 +47,15 @@ export default class Index extends Component {
   handleChange (value) {
     // 在改变后启动查询,跳转至结果页
     this.setState({
-      value: value.target.value
+      value: value.target.value,
     })
-    let reg = /^[\u4E00-\u9FA5]+$/
+    let reg = /^[\u4E00-\u9FA5]{2,}$/
     if(reg.test(value.target.value)){
       // 开启查询
+      this.setState({isLoading: true})
       this.getData(value.target.value)
     }else{
+      this.setState({details: {}})
       Taro.atMessage({ type: 'error', message: '请正确输入词语！' })
     }
   }
@@ -57,8 +66,9 @@ export default class Index extends Component {
       url: url,
       data: { appkey: jisu_mine_, word: word }
     }).then((res)=>{
+      console.log(res, 'res')
       if(res.statusCode === 200){
-        this.setState({ details: res.data.result })}
+        this.setState({ details: res.data.result, isLoading: false })}
       else
         Taro.atMessage({ type: 'error', message: res.data.msg })
     }).catch((error)=>{
@@ -71,14 +81,14 @@ export default class Index extends Component {
   // }
 
   render () {
-    const { details, value } = this.state
+    const { details, value, lazy, isLoading } = this.state
     // const bg = 'https://s1.ax1x.com/2020/04/18/Jnyy5T.jpg'
     // const bg = '../../assets/images/md03.jpg'
     return (
       <View className='search-breafter-box'>
         <AtMessage />
         <View className='search-box'>
-          <Image className='background' lazyLoad={true} src='../../assets/images/md03.jpg' />
+          <Image className='background' lazyLoad={lazy} src={banner} />
           <Text className='title'></Text>
           <Icon className='search-icon' size='18' type='search' />
           <Input
@@ -97,7 +107,7 @@ export default class Index extends Component {
             <AtCard
               extra={details.pinyin}
               title={value}
-              thumb='https://s1.ax1x.com/2020/04/11/G7xKAI.png'
+              thumb={thumb}
             >
               <View className='at-row p-text'>
                 <View className='at-col at-col-3'>
@@ -162,6 +172,7 @@ export default class Index extends Component {
             </AtCard>
           </View>)
         }
+        <Loading isLoading={isLoading} />
       </View>
     )
   }

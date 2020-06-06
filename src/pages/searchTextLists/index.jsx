@@ -1,17 +1,13 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { AtPagination  } from 'taro-ui'
+import { AtPagination,AtToast } from 'taro-ui'
 // import { connect  } from '@tarojs/redux'
 // import { updateTextLists } from '../../store/actions'
 import './index.scss'
 import {zidian_api, zidian_mine} from "../../../config/api"
-
+import Loading from '../../components/loading'
 
 export default class Index extends Component {
-
-  config = {
-    navigationBarTitleText: '选择文字'
-  }
 
   constructor (props) {
     super(props)
@@ -21,7 +17,8 @@ export default class Index extends Component {
       pageTotal: null, //总条数
       routerOption: null,
       routerName: null,
-      dataArray: [] // 换为props
+      dataArray: [], // 换为props
+      isLoading: true,
     }
   }
 
@@ -42,8 +39,12 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '选择文字'
+  }
+
   // wx转发
-  onShareAppMessage (res) {
+  onShareAppMessage () {
     return {
       title: '新华字典，勤查字典是一种人生态度！',
       path: `pages/searchTextLists/index?option=${this.state.routerOption}&name=${this.state.routerName}`
@@ -56,10 +57,11 @@ export default class Index extends Component {
       key: `${routerName}+${current}`,
       success: (res)=>{
         this.setState({
-          dataArray: res.data|| []
+          dataArray: res.data|| [],
+          isLoading: false
         })
       },
-      fail: (res)=>{
+      fail: ()=>{
         this.loadServerData()
       }
     })
@@ -92,6 +94,7 @@ export default class Index extends Component {
       dataArray: dataArray,
       current: data.page,
       pageTotal: data.totalcount,
+      isLoading: false
     })
     // this.props.updateTextLists({current:data.page,dataArray: dataArray,pageTotal: data.totalcount})
     Taro.setStorage({
@@ -118,7 +121,7 @@ export default class Index extends Component {
 
   render () {
     // const { current, pageTotal } = this.props
-    const { pageSize, dataArray, routerName,  current, pageTotal } = this.state
+    const { pageSize, dataArray, routerName,  current, pageTotal, isLoading } = this.state
     return (
       <View className='search-lists-box'>
         <Text className='panel__title'>选择文字 {routerName}</Text>
@@ -144,6 +147,7 @@ export default class Index extends Component {
             className='page'
           >
           </AtPagination>
+          <Loading isLoading={isLoading} />
       </View>
     )
   }
