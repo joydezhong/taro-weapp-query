@@ -12,18 +12,6 @@ export default class Index extends Component {
     }
   }
 
-  config = {
-    navigationBarTitleText: '帮助中心'
-  }
-
-  // wx转发
-  onShareAppMessage (res) {
-    return {
-      title: '学生辞典大全，学生的学习、查询小助手',
-      path: 'pages/mine/index'
-    }
-  }
-
   componentWillMount () {
     // let userInfo = getGlobalData('userInfo')
     this.beforeUserinfo()
@@ -36,6 +24,18 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  config = {
+    navigationBarTitleText: '帮助中心'
+  }
+
+  // wx转发
+  onShareAppMessage () {
+    return {
+      title: '学生辞典大全，学生的学习、查询小助手',
+      path: 'pages/mine/index'
+    }
+  }
 
   beforeUserinfo(){
     let that = this
@@ -86,9 +86,10 @@ export default class Index extends Component {
                 <Button
                   className='auth-button'
                   openType='getUserInfo'
-                  onGetUserInfo={this.getUserInfo.bind(this)}>
-                  <AtAvatar className='avatar' circle image=''></AtAvatar>
-                  <Text className='nick gray'>点击显示微信头像</Text>
+                  onGetUserInfo={this.getUserInfo.bind(this)}
+                >
+                <AtAvatar className='avatar' circle image=''></AtAvatar>
+                <Text className='nick gray'>点击显示微信头像</Text>
               </Button>
             </View>)
           }
@@ -100,13 +101,15 @@ export default class Index extends Component {
               note='收藏的成语词语诗词曲...'
               arrow='right'
               iconInfo={{ size: 25, color: '#ff4995', value: 'bookmark', }}
-              onClick={()=>{this.handleClick('collect')}} />
+              onClick={()=>{this.handleClick('collect')}} 
+            />
             <AtListItem
               title='帮助详情'
               note='各类小工具的使用帮助...'
               arrow='right'
               iconInfo={{ size: 25, color: '#78A4FA', value: 'help', }}
-              onClick={()=>{this.handleClick('help')}} />
+              onClick={()=>{this.handleClick('help')}} 
+            />
             <View className='contact-view'>
               <AtListItem
                 title='在线客服'
@@ -118,11 +121,17 @@ export default class Index extends Component {
                 userInfo.nickName ? (<Button
                   className='contact-button'
                   openType='contact'
-                  onContact={this.handleContact.bind(this)}>客服</Button>) : (
-                  <Button
-                    className='contact-button'
-                    openType='getUserInfo'
-                    onGetUserInfo={this.getUserInfo.bind(this)}>登录体验</Button>)
+                  onContact={this.handleContact.bind(this)}
+                >
+                  客服
+                </Button>) : (
+                <Button
+                  className='contact-button'
+                  openType='getUserInfo'
+                  onGetUserInfo={this.getUserInfo.bind(this)}
+                >
+                  登录体验
+                </Button>)
               }
             </View>
             <View className='feedback-view'>
@@ -135,7 +144,9 @@ export default class Index extends Component {
               <Button
                 className='feedback-button'
                 openType='feedback'
-                >反馈</Button>
+              >
+                反馈
+              </Button>
             </View>
             {/*<AtListItem*/}
             {/*  title='交流学习'*/}
@@ -146,7 +157,8 @@ export default class Index extends Component {
               title='关于'
               arrow='right'
               iconInfo={{ size: 25, color: '#8c8c8c', value: 'tag', }}
-              onClick={()=>{this.handleClick('about')}} />
+              onClick={()=>{this.handleClick('about')}} 
+            />
           </AtList>
         </View>
       </View>

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
 import { AtActivityIndicator } from 'taro-ui'
 import './home.scss'
 // import { get as getGlobalData, set as setGlobalData } from '../../global_data'
@@ -98,7 +98,8 @@ export default class Index extends Component {
               <Button
                 className='auth-button'
                 openType='getUserInfo'
-                onGetUserInfo={this.getUserInfo.bind(this)}>权限</Button>
+                onGetUserInfo={this.getUserInfo.bind(this)}
+              >权限</Button>
             </View>
         )
         }

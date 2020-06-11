@@ -5,6 +5,13 @@ import './index.scss'
 
 export default class Index extends Component {
 
+  constructor () {
+    super(...arguments)
+    this.state = {
+      lazy: true
+    }
+  }
+
   componentWillMount () {
     this.handleAuthJump()
   }
@@ -99,7 +106,7 @@ export default class Index extends Component {
 
     return (
       <View className='indexBox'>
-        <Image className='background' lazyLoad={true} src={bg} />
+        <Image className='background' lazyLoad={this.state.lazy} src={bg} />
         <View className='at-row'>
           <View className='at-col at-col-5'>
             <AtIcon className='cap' prefixClass='fa' value='graduation-cap' size='40' color='#000' />

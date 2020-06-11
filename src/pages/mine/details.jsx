@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtCard } from 'taro-ui'
 import './details.scss'
 
@@ -7,21 +7,9 @@ export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-      titleText: '',
+      // titleText: '',
       option: '',
-      open: false
-    }
-  }
-
-  config = {
-    navigationBarTitleText: '帮助中心'
-  }
-
-  // wx转发
-  onShareAppMessage (res) {
-    return {
-      title: '学生辞典大全，学生的学习、查询小助手',
-      path: `pages/mine/details?option=${this.state.option}`
+      // open: false
     }
   }
 
@@ -42,7 +30,7 @@ export default class Index extends Component {
     }
     this.setState({
       option: option,
-      titleText: titleText
+      // titleText: titleText
     })
     Taro.setNavigationBarTitle({
       title: titleText
@@ -59,11 +47,23 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
-  handleClick (value) {
-    this.setState({
-      open: value
-    })
+  config = {
+    navigationBarTitleText: '帮助中心'
   }
+
+  // wx转发
+  onShareAppMessage () {
+    return {
+      title: '学生辞典大全，学生的学习、查询小助手',
+      path: `pages/mine/details?option=${this.state.option}`
+    }
+  }
+
+  // handleClick (value) {
+  //   this.setState({
+  //     open: value
+  //   })
+  // }
 
   render () {
     const { option } = this.state
@@ -143,7 +143,7 @@ export default class Index extends Component {
                 <View className='version'>V1.1.0</View>
                 <View>优化授权，更新页面转发，更新帮助中心内功能</View>
                 <View className='version'>V1.2.0</View>
-                <View>更加严谨的用户输入模式，更加贴近用户的实际需求和使用习惯，提升应用响应速度，优化用户体验，</View>
+                <View>更加严谨的用户输入模式，更加贴近用户的实际需求和使用习惯，提升应用响应速度，优化用户体验</View>
               </AtCard>
             </View>
           )
